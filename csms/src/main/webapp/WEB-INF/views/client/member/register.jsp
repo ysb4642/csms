@@ -255,32 +255,32 @@
 			<form action="${contextPath }/member/register" method="post" name="form" onsubmit="return formValidationCheck()">
 				<div class="flex-w flex-tr">
 					<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-						<h5 style="margin-right: 18%;"><label for="memberId">아이디</label></h5>
+						<h5 style="margin-right: 18%;"><label for="memberId">아이디<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="idMsg"></span>
 						<input type="hidden" name="memberIdCheck"/>
-						<h5 style="margin-right: 17%;" class="m-t-20"><label for="passwd">비밀번호</label></h5>
+						<h5 style="margin-right: 17%;" class="m-t-20"><label for="passwd">비밀번호<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="password" id="passwd" name="passwd" placeholder="비밀번호를 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="passwordMsg"></span>
 						<input type="hidden" name="passwdCheck"/>
-						<h5 style="margin-right: 13%;" class="m-t-20"><label for="confirmPasswd">비밀번호 재확인</label></h5>
+						<h5 style="margin-right: 13%;" class="m-t-20"><label for="confirmPasswd">비밀번호 재확인<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="password" id="confirmPasswd" name="confirmPasswd" placeholder="비밀번호를 확인하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="confirmPasswdMsg"></span>
 						<input type="hidden" name="confirmPasswdCheck"/>
-						<h5 style="margin-right: 19%;" class="m-t-20"><label for="memberNm">이름</label></h5>
+						<h5 style="margin-right: 19%;" class="m-t-20"><label for="memberNm">이름<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="text" id="memberNm" name="memberNm" placeholder="이름을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18" >
 						</div>
 						<span id="memberNmMsg"></span>
 						<input type="hidden" name="memberNmCheck"/>
 						<div>
-	                    	<h5 style="margin-right: 17%;" class="m-t-20"><label for="birthY">생년월일</label></h5>
+	                    	<h5 style="margin-right: 17%;" class="m-t-20"><label for="birthY">생년월일<span style="color:red;">*</span></label></h5>
 	                        <select id="birthY" style="width:93px;height:45px;" class="bor19 size-218 m-b-20">
 	                            <c:forEach var="i" begin="0" end="200">
 	                           		<option>${2022 - i}</option>
@@ -321,7 +321,7 @@
 	                    </div>
 					</div>
 					<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-						<h5 style="margin-right: 17%;"><label for="hp">휴대전화</label></h5>
+						<h5 style="margin-right: 17%;"><label for="hp">휴대전화<span style="color:red;">*</span></label></h5>
 	                    <div class="bor19 size-218 m-b-0">
 	                  		<input type="text" id="hp" name="hp" placeholder="-를 포함해서 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
@@ -331,7 +331,7 @@
 	                         CSMS에서 발송하는 SMS 소식을 수신합니다.&nbsp;
 	                    	<input type="checkbox" id="smsstsYn" name="smsstsYn" value="Y">
 	                    </label>
-						<h5 style="margin-right: 18%;" class="m-t-20"><label for="email">이메일</label></h5>
+						<h5 style="margin-right: 18%;" class="m-t-20"><label for="email">이메일<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-0">
 	                    	<input type="text" id="email" name="email" placeholder="이메일을 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
