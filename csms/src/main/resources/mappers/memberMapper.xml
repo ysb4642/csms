@@ -13,7 +13,6 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="MemberDto">
-	
 		INSERT INTO
 				MEMBER
 		VALUES (
@@ -34,5 +33,14 @@
 				NOW()
 		)
 	</insert>
+	
+	<select id="selectLogin" parameterType="MemberDto" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
 
 </mapper>

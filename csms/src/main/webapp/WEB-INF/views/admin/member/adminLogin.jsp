@@ -9,13 +9,13 @@
 
 function formValidationCheck() {
 	
-	var memberId = document.form.memberId;
-	if (memberId.value == "") {
-		$("#memberIdMsg").html("<span style='color:red;'>아이디를 입력하세요.</span>");
-		document.form.memberId.focus();
+	var adminId = document.form.adminId;
+	if (adminId.value == "") {
+		$("#adminIdMsg").html("<span style='color:red;'>아이디를 입력하세요.</span>");
+		document.form.adminId.focus();
 		return false;
 	}
-	$("#memberIdMsg").html("<span></span>");
+	$("#adminIdMsg").html("<span></span>");
 	
 	var passwd = document.form.passwd;
 	if (passwd.value == "") {
@@ -46,17 +46,17 @@ function formValidationCheck() {
 		<div class="container">
 			<div align="center">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form action="${contextPath }/member/login" method="post" name="form" onsubmit="return formValidationCheck()">
+					<form action="${contextPath }/admin/member/adminLogin" method="post" name="form" onsubmit="return formValidationCheck()">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							로그인
 						</h4>
 						<div class="m-b-20">
 							<div class="bor8 m-b-1 how-pos4-parent">
-								<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" id="memberId" name="memberId" placeholder="아이디">
+								<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" id="adminId" name="adminId" placeholder="아이디">
 								<img class="how-pos4 pointer-none" src="${contextPath }/resources/bootstrap/images/icons/icon-email.png" alt="ICON">
 							</div>
 							<div align="left">
-								<span id="memberIdMsg"></span>
+								<span id="adminIdMsg"></span>
 							</div>
 						</div>
 						<div class="m-b-20">
@@ -66,7 +66,7 @@ function formValidationCheck() {
 							</div>
 							<div align="left">
 								<span id="passwordMsg"></span>
-							</div>	
+							</div>
 						</div>
 						<div align="center">
 		    				<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">로그인</button>

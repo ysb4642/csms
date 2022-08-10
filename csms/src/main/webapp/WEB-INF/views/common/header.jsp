@@ -24,33 +24,53 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+								<a href="${contextPath }">Home</a>
 							</li>
 
 							<li>
 								<a href="product.html">Shop</a>
 							</li>
-
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="${contextPath }/member/login">Login</a>
-							</li>
-
-							<li>
-								<a href="${contextPath }/member/register">Register</a>
-							</li>
-
-							<li>
-								<a href="contact.html">Contact</a>
-							</li>
+							<c:choose>
+								<c:when test="${sessionScope.role eq 'admin' }">
+									<li>
+										<a href="#">Management</a>
+										<ul class="sub-menu">
+											<li><a href="#">Goods Management</a></li>
+											<li><a href="#">User Management</a></li>
+											<li><a href="#">Order Management</a></li>
+											<li><a href="#">Contact Management</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="${contextPath }/member/logout">logout</a>
+									</li>
+									
+								</c:when>
+								<c:otherwise>
+									<li class="label1" data-label1="hot">
+										<a href="shoping-cart.html">Features</a>
+									</li>
+									<c:choose>
+										<c:when test="${sessionScope.memberId eq null }">
+											<li>
+												<a href="${contextPath }/member/login">Login</a>
+											</li>
+				
+											<li>
+												<a href="${contextPath }/member/register">Register</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<a href="${contextPath }/member/logout">logout</a>
+											</li>
+										</c:otherwise>
+									</c:choose>
+									<li>
+										<a href="contact.html">Contact</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
 					</div>	
 

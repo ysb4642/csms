@@ -6,4 +6,5 @@ public interface MemberDao {
 	
 	public String selectDuplicatedId(String memberId) throws Exception; 
 	public void insertMember(MemberDto memberDto) throws Exception;
+	public MemberDto selectLogin(MemberDto memberDto) throws Exception;
 }

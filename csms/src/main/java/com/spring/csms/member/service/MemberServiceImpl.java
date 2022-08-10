@@ -31,4 +31,17 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.insertMember(memberDto);
 	}
 
+	@Override
+	public boolean login(MemberDto memberDto) throws Exception {
+		
+		MemberDto checkExsistId = memberDao.selectLogin(memberDto);
+		
+		if (checkExsistId != null) {
+			if (bCryptPasswordEncoder.matches(memberDto.getPasswd(), checkExsistId.getPasswd())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
