@@ -7,7 +7,7 @@
 		SELECT
 				*
 		FROM
-				ADMIN
+				`ADMIN`
 		WHERE
 				ADMIN_ID = #{adminId} AND PASSWD = #{passwd}
 	</select>
