@@ -8,13 +8,6 @@
 <script src="${contextPath}/resources/bootstrap/js/jquery-3.6.0.min.js"></script>
 <script>
 
-	var checkMemberId 	   = false;
-	var checkPasswd 	   = false
-	var checkConfirmPasswd = false;
-	var checkMemberNm	   = false;
-	var checkHp 		   = false;
-	var checkEmail 		   = false;
-	
 	$(document).ready(function() {
 		
 		$("#memberId").blur(function(){
@@ -23,14 +16,14 @@
 			
 			if (memberId == "") {
 				$("#idMsg").html("<span style='color:red;'>필수정보 입니다.</span>");
-				checkMemberId = false;
+				$("[name='memberIdCheck']").val('N');
 				return false ;
 			}
 			
 			var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
 	        if (!isID.test(memberId)) {
 	        	$("#idMsg").html("<span style='color:red;'>5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.</span>");
-	        	checkMemberId = false;
+	        	$("[name='memberIdCheck']").val('N');
 	            return false ;
 	        }
 			
@@ -40,11 +33,11 @@
 				success : function(data) {
 					if (data == "notDuplicated") {
 						$("#idMsg").html("<span style='color:blue;'>사용가능한 아이디입니다.</span>");
-						checkMemberId = true;
+						$("[name='memberIdCheck']").val('Y');
 						return true ;
 					} else {
 						$("#idMsg").html("<span style='color:red;'>이미 사용중인 아이디입니다.</span>");
-						checkMemberId = false;
+						$("[name='memberIdCheck']").val('N');
 						return false ;
 					}
 				}
@@ -58,17 +51,17 @@
 			
 			if (passwd == "") {
 				$("#passwordMsg").html("<span style='color:red;'>비밀번호를 입력해주세요.</span>");
-				checkPasswd = false;
+				$("[name='passwdCheck']").val('N');
 	            return false ;
 	        }
-	        if (!isValidPasswd(passwd)) {
-	        	$("#passwordMsg").html("<span style='color:red;'>8~16자 영문 대 소문자, 숫자, 특수문자를 포함하세요.</span>");
-	        	checkPasswd = false;
+	        if (isValidPasswd(passwd) != true) {
+	        	$("#passwordMsg").html("<span style='color:red;'>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</span>");
+	        	$("[name='passwdCheck']").val('N');
 	            return false ;
 	        }
 	        
 	        $("#passwordMsg").html("<span></span>");
-	        checkPasswd = true;
+	        $("[name='passwdCheck']").val('Y');
 	        $("#confirmPasswd").focus();
 	        return true ;
 		})
@@ -80,17 +73,17 @@
 			
 			if (confirmPasswd == "") {
 				$("#confirmPasswdMsg").html("<span style='color:red;'>비밀번호를 입력해주세요.</span>");
-				checkConfirmPasswd = false;
+				$("[name='confirmPasswdCheck']").val('N');
 	            return false ;
 			}
 			
 			if (passwd != confirmPasswd) {
 				$("#confirmPasswdMsg").html("<span style='color:red;'>비밀번호가 일치하지 않습니다.</span>");
-				checkConfirmPasswd = false;
+				$("[name='confirmPasswdCheck']").val('N');
 	            return false ;
 			} else {
 				$("#confirmPasswdMsg").html("<span style='color:blue;'>일치합니다.</span>");
-				checkConfirmPasswd = true;
+				$("[name='confirmPasswdCheck']").val('Y');
 				return true ;
 			}
 			
@@ -103,16 +96,16 @@
 			
 			if (memberNm == "") {
 				$("#memberNmMsg").html("<span style='color:red;'>필수정보 입니다.</span>");
-				checkMemberNm = false;
+				$("[name='memberNmCheck']").val('N');
 				return false ;
 			}
 			if (memberNm != "" && nonchar.test(memberNm)) {
 				$("#memberNmMsg").html("<span style='color:red;'>한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)</span>");
-				checkMemberNm = false;
+				$("[name='memberNmCheck']").val('N');
 				return false ;
 			}
 			$("#memberNmMsg").html("<span></span>");
-			checkMemberNm = true;
+			$("[name='memberNmCheck']").val('Y');
 			return true ;			
 		})
 		
@@ -123,16 +116,16 @@
 			
 			if (hp == ""){
 				$("#hpMsg").html("<span style='color:red;'>필수정보 입니다.</span>");
-				checkHp = false;
+				$("[name='hpCheck']").val('N');
 			    return false ;
 			}
 			if (isValidHp.test(hp)) {
 				$("#hpMsg").html("<span></span>");
-				checkHp = true;
+				$("[name='hpCheck']").val('Y');
 		        return true ;
 		    }
 			$("#hpMsg").html("<span style='color:red;'>휴대전화 번호를 확인해주세요.</span>");
-			checkHp = false;
+			$("[name='hpCheck']").val('N');
 		    return false ;
 			
 		})
@@ -144,35 +137,24 @@
 			
 			if (email == "") {
 				$("#emailMsg").html("<span style='color:red;'>필수정보 입니다.</span>");
-				checkEmail = false;
+				$("[name='emailCheck']").val('N');
 			    return false ;
 			}
 			
 			if (isValidEmail.test(email)) {
 				$("#emailMsg").html("<span></span>");
-				checkEmail = true;
+				$("[name='emailCheck']").val('Y');
 		        return true ;
 			}
 			$("#emailMsg").html("<span style='color:red;'>이메일을 확인해주세요.</span>");
-			checkEmail = false;
+			$("[name='emailCheck']").val('N');
 		    return false ;
 			
 		})
 		
 	});
 	
-	function isValidPasswd(str) {
-		var pattern1 = /[0-9]/; // 숫자
-		var pattern2 = /[a-zA-Z]/; // 문자
-		var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-		if(!pattern1.test(str) || !pattern2.test(str) || !pattern3.test(str) || str.length < 8 || str.length > 16) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	/* function isValidPasswd(passwd) {
+	function isValidPasswd(passwd) {
         var cnt = 0;
         
         var isSpace = checkSpace(passwd);
@@ -196,7 +178,7 @@
         }
 
         return true;
-    } */
+    }
 	
 	function checkSpace(passwd) {
         if (passwd.search(/\s/) != -1) {
@@ -207,37 +189,43 @@
 	
 	function formValidationCheck() {
 		
-		if (!checkMemberId) {
+		var memberIdCheck = document.form.memberIdCheck;
+		if (memberIdCheck.value == 'N') {
 			alert("아이디를 확인하세요.");
 			document.form.memberId.focus();
 			return false;
 		}
 		
-		if (!checkPasswd) {
+		var passwdCheck = document.form.passwdCheck;
+		if (passwdCheck.value == 'N') {
 			alert("비밀번호를 확인하세요.");
 			document.form.passwd.focus();
 			return false;
 		}
 		
-		if (!checkConfirmPasswd) {
+		var confirmPasswdCheck = document.form.confirmPasswdCheck;
+		if (confirmPasswdCheck.value == 'N') {
 			alert("비밀번호를 확인하세요.");
 			document.form.passwd.focus();
 			return false;
 		}
 		
-		if (!checkMemberNm) {
+		var memberNmCheck = document.form.memberNmCheck;
+		if (memberNmCheck.value == 'N') {
 			alert("이름을 확인하세요.");
 			document.form.memberNm.focus();
 			return false;
 		}
 		
-		if (!checkHp) {
+		var hpCheck = document.form.hpCheck;
+		if (hpCheck.value == 'N') {
 			alert("휴대전화 번호를 확인하세요.");
 			document.form.hp.focus();
 			return false;
 		}
 		
-		if (!checkEmail) {
+		var emailCheck = document.form.emailCheck;
+		if (emailCheck.value == 'N') {
 			alert("이메일을 확인하세요.");
 			document.form.email.focus();
 			return false;
@@ -272,23 +260,27 @@
 							<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="idMsg"></span>
+						<input type="hidden" name="memberIdCheck"/>
 						<h5 style="margin-right: 17%;" class="m-t-20"><label for="passwd">비밀번호<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="password" id="passwd" name="passwd" placeholder="비밀번호를 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="passwordMsg"></span>
+						<input type="hidden" name="passwdCheck"/>
 						<h5 style="margin-right: 13%;" class="m-t-20"><label for="confirmPasswd">비밀번호 재확인<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="password" id="confirmPasswd" name="confirmPasswd" placeholder="비밀번호를 확인하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="confirmPasswdMsg"></span>
+						<input type="hidden" name="confirmPasswdCheck"/>
 						<h5 style="margin-right: 19%;" class="m-t-20"><label for="memberNm">이름<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-1">
 							<input type="text" id="memberNm" name="memberNm" placeholder="이름을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18" >
 						</div>
 						<span id="memberNmMsg"></span>
+						<input type="hidden" name="memberNmCheck"/>
 						<div>
-	                    	<h5 style="margin-right: 17%;" class="m-t-20"><label for="birthY">생년월일</label></h5>
+	                    	<h5 style="margin-right: 17%;" class="m-t-20"><label for="birthY">생년월일<span style="color:red;">*</span></label></h5>
 	                        <select id="birthY" style="width:93px;height:45px;" class="bor19 size-218 m-b-20">
 	                            <c:forEach var="i" begin="0" end="200">
 	                           		<option>${2022 - i}</option>
@@ -334,6 +326,7 @@
 	                  		<input type="text" id="hp" name="hp" placeholder="-를 포함해서 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 	                    <span id="hpMsg"></span>
+	                    <input type="hidden" name="hpCheck"/>
 	                    <label for="smsstsYn" class="row" style="margin-left: 0.2%;">
 	                         CSMS에서 발송하는 SMS 소식을 수신합니다.&nbsp;
 	                    	<input type="checkbox" id="smsstsYn" name="smsstsYn" value="Y">
@@ -343,6 +336,7 @@
 	                    	<input type="text" id="email" name="email" placeholder="이메일을 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 	                    <span id="emailMsg"></span>
+	                    <input type="hidden" name="emailCheck"/>
 	                    <label for="emailstsYn" class="row" style="margin-left: 0.2%;">
 		                    CSMS에서 발송하는 E-mail을 수신합니다.&nbsp;
 		                <input type="checkbox" id="emailstsYn" name="emailstsYn" value="Y">

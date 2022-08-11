@@ -11,4 +11,12 @@
 		WHERE
 				ADMIN_ID = #{adminId} AND PASSWD = #{passwd}
 	</select>
+	
+	<select id="selectListMember" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				MEMBER
+	</select>
+	
 </mapper>

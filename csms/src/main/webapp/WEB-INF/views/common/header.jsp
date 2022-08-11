@@ -24,7 +24,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="${contextPath }">Home</a>
+								<a href="${contextPath }/">Home</a>
 							</li>
 
 							<li>
@@ -36,7 +36,7 @@
 										<a href="#">Management</a>
 										<ul class="sub-menu">
 											<li><a href="#">Goods Management</a></li>
-											<li><a href="#">User Management</a></li>
+											<li><a href="${contextPath }/admin/member/adminMemberList">User Management</a></li>
 											<li><a href="#">Order Management</a></li>
 											<li><a href="#">Contact Management</a></li>
 										</ul>

@@ -55,6 +55,14 @@ public class AdminMemberController {
 		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
 		
 	}
+	
+	@RequestMapping(value="/adminMemberList", method=RequestMethod.GET)
+	public ModelAndView adminMemberList() throws Exception {
+		
+		ModelAndView mv = new ModelAndView("/admin/member/adminMemberList");
+		mv.addObject("memberList", adminMemberService.getMemberList());
+		return mv;
+	}
 
 }
 
