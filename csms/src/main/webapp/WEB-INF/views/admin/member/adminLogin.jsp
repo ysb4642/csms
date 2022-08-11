@@ -36,7 +36,7 @@ function formValidationCheck() {
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('${contextPath }/resources/bootstrap/images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			로그인
+			관리자 로그인
 		</h2>
 	</section>	
 
@@ -48,7 +48,7 @@ function formValidationCheck() {
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 					<form action="${contextPath }/admin/member/adminLogin" method="post" name="form" onsubmit="return formValidationCheck()">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							로그인
+							관리자 로그인
 						</h4>
 						<div class="m-b-20">
 							<div class="bor8 m-b-1 how-pos4-parent">

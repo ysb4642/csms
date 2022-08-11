@@ -57,7 +57,7 @@
 											<tr>
 												<td style="height: 50px; text-align: center;"><h6>${i.count }</h6></td>
 												<td style="height: 50px; text-align: center;">
-													<h6><a href="#">${memberDto.memberId }</a></h6>												
+													<h6><a href="#<%-- ${contextPath }/myPage/myInfo?memberId=${memberDto.memberId} --%>">${memberDto.memberId }</a></h6>												
 												</td>
 												<td style="height: 50px; text-align: center;"><strong>${memberDto.memberNm }</strong></td>
 												<td style="height: 50px; text-align: center;"><fmt:formatNumber value="${memberDto.point }"/>P</td>
