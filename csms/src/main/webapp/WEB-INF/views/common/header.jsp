@@ -35,7 +35,7 @@
 									<li>
 										<a href="#">Management</a>
 										<ul class="sub-menu">
-											<li><a href="#">Goods Management</a></li>
+											<li><a href="${contextPath }/admin/goods/adminGoodsList">Goods Management</a></li>
 											<li><a href="${contextPath }/admin/member/adminMemberList">User Management</a></li>
 											<li><a href="#">Order Management</a></li>
 											<li><a href="#">Contact Management</a></li>

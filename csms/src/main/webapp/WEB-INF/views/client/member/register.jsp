@@ -172,32 +172,6 @@
 		}
 	}
 	
-	/* function isValidPasswd(passwd) {
-        var cnt = 0;
-        
-        var isSpace = checkSpace(passwd);
-        if (isSpace) {
-            return false;
-        }
-        if (passwd.length < 8) {
-            return false;
-        }
-        for (var i = 0; i < passwd.length; ++i) {
-            if (passwd.charAt(0) == passwd.substring(i, i + 1))
-                ++cnt;
-        }
-        if (cnt == passwd.length) {
-            return false;
-        }
-
-        var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
-        if (!isPW.test(passwd)) {
-            return false;
-        }
-
-        return true;
-    } */
-	
 	function checkSpace(passwd) {
         if (passwd.search(/\s/) != -1) {
             return true;

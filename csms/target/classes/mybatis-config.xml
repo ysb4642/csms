@@ -8,8 +8,9 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.spring.csms.member.dto.MemberDto"	alias="MemberDto"/>
+		<typeAlias type="com.spring.csms.member.dto.MemberDto"		  alias="MemberDto"/>
 		<typeAlias type="com.spring.csms.admin.member.dto.AdminDto"   alias="AdminDto" />
+		<typeAlias type="com.spring.csms.goods.dto.GoodsDto" 		  alias="GoodsDto"/>
 	</typeAliases>
 	
 </configuration>
