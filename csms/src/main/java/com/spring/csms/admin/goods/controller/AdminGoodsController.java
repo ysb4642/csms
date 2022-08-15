@@ -25,6 +25,11 @@ public class AdminGoodsController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/adminGoodsAdd", method = RequestMethod.GET)
+	public String adminGoodsAdd() {
+		return "/admin/goods/adminGoodsAdd";
+	}
+	
 	
 	
 }
