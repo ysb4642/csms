@@ -18,6 +18,12 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 	public List<GoodsDto> selectListGoods() throws Exception {
 		return sqlSession.selectList("admin.goods.selectListGoods");
 	}
+
+	@Override
+	public void insertGoods(GoodsDto goodsDto) throws Exception {
+		sqlSession.insert("admin.goods.insertGoods", goodsDto);
+		
+	}
 	
 	
 }

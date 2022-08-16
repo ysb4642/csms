@@ -7,4 +7,5 @@ import com.spring.csms.goods.dto.GoodsDto;
 public interface AdminGoodsDao {
 	
 	public List<GoodsDto> selectListGoods() throws Exception;
+	public void insertGoods(GoodsDto goodsDto) throws Exception;
 }

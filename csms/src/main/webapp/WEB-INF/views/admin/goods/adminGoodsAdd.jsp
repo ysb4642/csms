@@ -13,12 +13,19 @@
 		$("#sort").change(function() {
 			var sort = $("#sort").val();
 			
-			if (sort == "사료" || sort == "간식") {
+			if (sort == "사료") {
 				$("#taste").prop("disabled", false);
 				$("#expiryDateY").prop("disabled", false);
 				$("#expiryDateM").prop("disabled", false);
 				$("#expiryDateD").prop("disabled", false);
 				$("#capacity").prop("disabled", false);
+			}
+			else if (sort == "간식") {
+				$("#taste").prop("disabled", false);
+				$("#expiryDateY").prop("disabled", false);
+				$("#expiryDateM").prop("disabled", false);
+				$("#expiryDateD").prop("disabled", false);
+				$("#capacity").prop("disabled", true);
 			}
 			else {
 				$("#taste").prop("disabled", true);
@@ -29,6 +36,120 @@
 			}
 		});
 	});
+	
+function formValidationCheck() {
+		
+		var goodsFileName = document.form.goodsFileName
+		if (goodsFileName.value == "") {
+			alert("상품 이미지를 등록하세요.");
+			goodsFileName.focus();
+			return false;
+		}
+		
+		var goodsNm = document.form.goodsNm
+		if (goodsNm.value == "") {
+			alert("상품명을 입력하세요.");
+			goodsNm.focus();
+			return false;
+		}
+		
+		var brand = document.form.brand
+		if (brand.value == "") {
+			alert("브랜드명을 입력하세요.");
+			brand.focus();
+			return false;
+		}
+		
+		var regExp = /^[0-9]*$/;
+		var price = document.form.price
+		if (price.value == "") {
+			alert("가격을 입력하세요.");
+			price.focus();
+			return false;
+		}
+		if(!regExp.test(price.value)){
+			alert("가격에는 숫자만 입력가능합니다.");
+			price.focus();
+		    return false;
+		}
+		
+		var discountRate = document.form.discountRate
+		if (discountRate.value == "") {
+			alert("할인율을 입력하세요.");
+			discountRate.focus();
+			return false;
+		}
+		if(!regExp.test(discountRate.value)){
+			alert("할인율에는 숫자만 입력가능합니다.");
+			discountRate.focus();
+		    return false;
+		}
+		
+		var point = document.form.point
+		if (point.value == "") {
+			alert("적립포인트를 입력하세요.");
+			point.focus();
+			return false;
+		}
+		if(!regExp.test(point.value)){
+			alert("적립 포인트에는 숫자만 입력가능합니다.");
+			point.focus();
+		    return false;
+		}
+		
+		var sort = document.form.sort
+		if (sort.value == "선택") {
+			alert("분류를 선택하세요.");
+			sort.focus();
+			return false;
+		}
+		
+		var taste = document.form.taste
+		if (taste.disabled == false && taste.value == "") {
+			alert("맛을 입력하세요.");
+			taste.focus();
+			return false;
+		}
+		
+		var capacity = document.form.capacity
+		if (capacity.disabled == false && capacity.value == "") {
+			alert("중량을 입력하세요.");
+			capacity.focus();
+			return false;
+		}
+		
+		var stock = document.form.stock
+		if (stock.value == "선택") {
+			alert("재고를 입력하세요.");
+			stock.focus();
+			return false;
+		}
+		if(!regExp.test(stock.value)){
+			alert("재고는 숫자만 입력가능합니다.");
+			stock.focus();
+		    return false;
+		}
+		
+		var deliveryPrice = document.form.deliveryPrice
+		if (deliveryPrice.value == "선택") {
+			alert("배송비를 입력하세요.");
+			deliveryPrice.focus();
+			return false;
+		}
+		
+		var explain = document.form.explain
+		if (explain.value == "선택") {
+			alert("상품설명을 입력하세요.");
+			explain.focus();
+			return false;
+		}
+		
+		var expiryDate = $("#expiryDateY").val() + "-" + $("#expiryDateM").val() + "-" + $("#expiryDateYD").val();
+		$("[name='expiryDate']").val(expiryDate);
+		
+		return true
+		
+	}
 
 </script>
 </head>
@@ -44,38 +165,32 @@
 	<!-- Content page -->
 	<section class="bg0 p-t-20 p-b-20">
 		<div class="container">
-			<form action="${contextPath }/member/register" method="post" name="form" onsubmit="return formValidationCheck()">
+			<form action="${contextPath }/admin/goods/adminGoodsAdd" method="post" name="form" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
 					<div class="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" align="left">
 						<h4 class="m-b-7">상품이미지<span style="color:red;">*</span></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="file" name="goodsFileName" class="stext-121 cl2 plh3 size-116 p-lr-18">
 						</div>
-						<span id="goodsFileNameMsg"></span>
 						<h4 class="m-t-20"><label for="goodsNm">상품명<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="goodsNm" name="goodsNm" placeholder="상품명을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
-						<span id="goodsNmMsg"></span>
 						<h4 class="m-t-20"><label for="brand">브랜드<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="brand" name="brand" placeholder="브랜드를 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
-						<span id="brandMsg"></span>
 						<h4 class="m-t-20"><label for="price">가격<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="price" name="price" placeholder="가격을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
-						<span id="priceMsg"></span>
 						<h4 class="m-t-20"><label for="discountRate">할인율<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="discountRate" name="discountRate" placeholder="할인율을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
-						<span id="discountRateMsg"></span>
 						<h4 class="m-t-20"><label for="point">적립포인트(P)<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="point" name="point" placeholder="적립 포인트(P)를 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
-						<span id="pointMsg"></span>
 						<div>
 	                    	<h4 class="m-t-20"><label for="sort">분류<span style="color:red;">*</span></label></h4>
 	                        <select id="sort" name="sort" style="width:1000px; height:52px;" class="bor19 m-b-1" >
@@ -88,12 +203,10 @@
 	                        	<option>스크래쳐/캣타워</option>
 	                       	</select>
 	                   	</div>
-	                   	<span id="sortMsg"></span>
 						<h4 class="m-t-20"><label for="taste">맛</label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="taste" name="taste" placeholder="맛을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18" disabled>
 						</div>
-						<span id="tasteMsg"></span>
 						<div>
 	                    	<h4 class="m-t-20"><label for="expiryDateY">유통기한</label></h4>
 	                        <select id="expiryDateY" style="width:420px;height:52px;" class="bor19 m-b-1" disabled>
@@ -131,21 +244,17 @@
 						<div class="bor19 m-b-1" style="width:1000px;">
 							<input type="text" id="capacity" name="capacity" placeholder="중량을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18" disabled>
 						</div>
-						<span id="capacityMsg"></span>
 						<h4 class="m-t-20"><label for="stock">재고<span style="color:red;">*</span></label></h4>
 	                    <div class="bor19 m-b-0" style="width:1000px;">
 	                  		<input type="text" id="stock" name="stock" placeholder="재고를 입력하세요" class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
-	                    <span id="stockMsg"></span>
 						<h4 class="m-t-20"><label for="deliveryPrice">배송비<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-0" style="width:1000px;">
 	                    	<input type="text" id="deliveryPrice" name="deliveryPrice" placeholder="배송비를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
-	                    <span id="deliveryPriceMsg"></span>
 	                    <h4 class="m-t-20"><label for="explain">상품설명<span style="color:red;">*</span></label></h4>
 	                    	<textarea rows="5" cols="100" id="explain" name="explain" placeholder="상품설명을 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18"></textarea>
 	                    	<script>CKEDITOR.replace('explain');</script>
-	                    <span id="explainMsg"></span>
 						<div class="m-t-20" align="center">
 		    				<button type="submit" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">등록</button>
 						</div>

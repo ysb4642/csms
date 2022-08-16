@@ -19,4 +19,9 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		return adminGoodsDao.selectListGoods();
 	}
 
+	@Override
+	public void addNewGoods(GoodsDto goodsDto) throws Exception {
+		adminGoodsDao.insertGoods(goodsDto);
+	}
+
 }

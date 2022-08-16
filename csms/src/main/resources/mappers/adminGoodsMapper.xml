@@ -9,5 +9,41 @@
 		FROM
 				GOODS
 	</select>
+	
+	<insert id="insertGoods" parameterType="GoodsDto">
+		INSERT INTO
+				GOODS (
+   					 GOODS_NM,
+   					 PRICE,
+   					 TASTE,
+   					 EXPIRY_DATE,
+   					 CAPACITY,
+   					 DISCOUNT_RATE,
+   					 STOCK,
+   					 BRAND,
+   					 SORT,
+   					 POINT,
+   					 DELIVERY_PRICE,
+   					 `EXPLAIN`,
+   					 GOODS_FILE_NAME,
+   					 ENROLL_DT
+				)
+		VALUES (
+					#{goodsNm},
+				    #{price},
+					#{taste},
+					#{expiryDate},
+					#{capacity},
+					#{discountRate},
+					#{stock},
+					#{brand},
+					#{sort},
+					#{point},
+					#{deliveryPrice},
+					#{explain},
+					#{goodsFileName},
+					NOW()
+		)
+	</insert>
 
 </mapper>
