@@ -144,7 +144,7 @@ function formValidationCheck() {
 			return false;
 		}
 		
-		var expiryDate = $("#expiryDateY").val() + "-" + $("#expiryDateM").val() + "-" + $("#expiryDateYD").val();
+		var expiryDate = $("#expiryDateY").val() + "-" + $("#expiryDateM").val() + "-" + $("#expiryDateD").val();
 		$("[name='expiryDate']").val(expiryDate);
 		
 		return true

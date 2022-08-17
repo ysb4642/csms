@@ -382,6 +382,22 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 /*---------------------------------------------*/
+
+.product__details__price {
+	font-size: 30px;
+	font-weight: 600;
+	color: #ca1515;
+	margin-bottom: 30px;
+}
+
+.product__details__price span {
+	font-size: 18px;
+	color: #b1b0b0;
+	text-decoration: line-through;
+	margin-left: 10px;
+	display: inline-block;
+}
+
 .sub-menu {
   list-style-type: none;
   position: absolute;
