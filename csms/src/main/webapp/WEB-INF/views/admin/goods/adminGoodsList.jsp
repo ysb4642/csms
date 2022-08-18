@@ -19,12 +19,12 @@
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="${contextPath }/" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				AdminGoodsList
+				상품리스트
 			</span>
 		</div>
 	</div>
@@ -54,7 +54,9 @@
 											<td style="height: 50px; text-align: center;"><h6>${goodsDto.goodsCd }</h6></td>
 											<td>
 												<div class="row">
-													<img src="${contextPath }/thumbnails?goodsFileName=${goodsDto.goodsFileName }" alt="IMG" width="100" height="100" class="m-l-100">
+													<a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDto.goodsCd}">
+														<img src="${contextPath }/thumbnails?goodsFileName=${goodsDto.goodsFileName }" alt="IMG" width="100" height="100" class="m-l-100">
+													</a>
 		                                            <div class="m-t-25 m-l-60">
 			                                            <h6><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDto.goodsCd}">${goodsDto.goodsNm }</a></h6>
 			                                        	<p>${goodsDto.sort} | ${goodsDto.brand} | <fmt:formatNumber value="${goodsDto.price }"/>원</p>

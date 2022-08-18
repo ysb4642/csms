@@ -20,18 +20,18 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+			<a href="${contextPath }/" class="stext-109 cl8 hov-cl1 trans-04">
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
+			<a href="${contextPath }/admin/goods/adminGoodsList" class="stext-109 cl8 hov-cl1 trans-04">
+				상품리스트
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Lightweight Jacket
+				${goodsDto.goodsNm }
 			</span>
 		</div>
 	</div>
@@ -87,59 +87,10 @@
 						<h4 class="mtext-105 cl2 js-name-detail">
 							${goodsDto.goodsNm } <br>
 						</h4>
-						<h6 class="p-b-14">${goodsDto.brand } | ${goodsDto.taste } | 중량 : ${goodsDto.capacity }</h6>
-
-						<span class="mtext-106 cl2">
-							<fmt:formatNumber value="${goodsDto.price }" />
-						</span>
-						
-						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-						</p>
-						
-						<!--  -->
-						<div class="p-t-33">
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">
-									Size
-								</div>
-
-								<div class="size-204 respon6-next">
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">
-									Color
-								</div>
-
-								<div class="size-204 respon6-next">
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="flex-w flex-r-m p-b-10">
+						<div class="product__details__price"><fmt:formatNumber value="${goodsDto.price - (goodsDto.price * goodsDto.discountRate / 100)}" /><span><fmt:formatNumber value="${goodsDto.price }"/></span></div>
+							<div class="flex-w flex-l-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+									<div class="wrap-num-product flex-w m-r-20 m-b-10">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
@@ -155,10 +106,27 @@
 										Add to cart
 									</button>
 								</div>
-							</div>	
+						<div class="col-sm-10 col-md-8 col-lg-6 m-t-20">
+							<ul>
+                                <li>
+                                    <span class="stext-102 cl3 size-205">맛 : ${goodsDto.taste }</span>
+                                </li>
+                                <li>
+                                    <span class="stext-102 cl3 size-205">중량 : ${goodsDto.capacity }</span>
+                                </li>
+                                <li>
+                                    <span class="stext-102 cl3 size-205">할인율 : ${goodsDto.discountRate }%</span>
+                                </li>
+                                <li>
+                                    <span class="stext-102 cl3 size-205">포인트 : ${goodsDto.point }P</span>
+                                </li>
+                                <li>
+                                    <span class="stext-102 cl3 size-205">배송비 : ${goodsDto.deliveryPrice }원</span>
+                                </li>
+                            </ul>
 						</div>
-
-						<!--  -->
+					</div>	
+						
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -206,7 +174,7 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+									${goodsDto.explain }
 								</p>
 							</div>
 						</div>
@@ -218,51 +186,41 @@
 									<ul class="p-lr-28 p-lr-15-sm">
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Weight
+												브랜드
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												0.79 kg
+												${goodsDto.brand }
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Dimensions
+												유통기한
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
+												${goodsDto.expiryDate } 이후
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Materials
+												재고
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												60% cotton
+												${goodsDto.stock }개
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Color
+												등록일
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
+												<fmt:formatDate value="${goodsDto.enrollDt }" pattern="yyyy-MM-dd"/>
 											</span>
 										</li>
 									</ul>
