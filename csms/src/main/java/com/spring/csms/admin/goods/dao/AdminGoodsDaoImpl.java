@@ -24,6 +24,18 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 		sqlSession.insert("admin.goods.insertGoods", goodsDto);
 		
 	}
+
+	@Override
+	public void deleteGoods(int goodsCd) throws Exception {
+		sqlSession.delete("admin.goods.deleteGoods", goodsCd);
+		
+	}
+
+	@Override
+	public void updateGoods(GoodsDto goodsDto) throws Exception {
+		sqlSession.update("admin.goods.updateGoods", goodsDto);
+		
+	}
 	
 	
 }

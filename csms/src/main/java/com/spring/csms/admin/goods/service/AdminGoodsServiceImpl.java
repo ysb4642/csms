@@ -21,7 +21,25 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
 	@Override
 	public void addNewGoods(GoodsDto goodsDto) throws Exception {
+		if (goodsDto.getExpiryDate().equals("")) {
+			goodsDto.setExpiryDate(null);
+		}
 		adminGoodsDao.insertGoods(goodsDto);
+	}
+
+	@Override
+	public void removeGoods(int goodsCd) throws Exception {
+		adminGoodsDao.deleteGoods(goodsCd);
+		
+	}
+
+	@Override
+	public void modifyGoods(GoodsDto goodsDto) throws Exception {
+		if (goodsDto.getExpiryDate().equals("")) {
+			goodsDto.setExpiryDate(null);
+		}
+		adminGoodsDao.updateGoods(goodsDto);
+		
 	}
 
 }

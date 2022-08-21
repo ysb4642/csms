@@ -1,5 +1,8 @@
 package com.spring.csms.myPage.dao;
 
-public interface MyPageDao {
+import com.spring.csms.member.dto.MemberDto;
 
+public interface MyPageDao {
+	
+	public MemberDto selectOneMyInfo(String memberId) throws Exception;
 }

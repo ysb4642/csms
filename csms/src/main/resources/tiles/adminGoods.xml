@@ -11,4 +11,9 @@
 		<put-attribute name="title" value="새상품추가" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/goods/adminGoodsAdd.jsp" />
 	</definition>
+	
+	<definition name="/admin/goods/adminGoodsModify" extends="baseLayout">
+		<put-attribute name="title" value="상품정보 수정" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/goods/adminGoodsModify.jsp" />
+	</definition>
 </tiles-definitions>

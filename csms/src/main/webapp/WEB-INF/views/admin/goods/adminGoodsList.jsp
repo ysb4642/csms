@@ -6,6 +6,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<script>
+	function adminGoodsRemove(goodsCd) {
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			location.href = "${contextPath}/admin/goods/adminGoodsRemove?goodsCd="+goodsCd;
+		}
+	}
+</script>
 </head>
 <body class="animsition">
 

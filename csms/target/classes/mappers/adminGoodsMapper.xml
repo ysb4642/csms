@@ -45,5 +45,57 @@
 					NOW()
 		)
 	</insert>
+	
+	<update id="updateGoods" parameterType="GoodsDto">
+		UPDATE
+			GOODS
+		<set>
+			<if test='goodsNm != null and goodsNm != ""'>
+				GOODS_NM = #{goodsNm},
+			</if>
+			<if test='price != null and price != ""'>
+				PRICE = #{price},
+			</if>
+			<if test='taste != null and taste != ""'>
+				TASTE = #{taste},
+			</if>
+			<if test='expiryDate != null and expiryDate != ""'>
+				EXPIRY_DATE = #{expiryDate},
+			</if>
+			<if test='capacity != null and capacity != ""'>
+				CAPACITY = #{capacity},
+			</if>
+			<if test='discountRate != null and discountRate != ""'>
+				DISCOUNT_RATE = #{discountRate},
+			</if>
+			<if test='stock != null and stock != ""'>
+				STOCK = #{stock},
+			</if>
+			<if test='brand != null and brand != ""'>
+				BRAND = #{brand},
+			</if>
+			<if test='sort != null and sort != ""'>
+				SORT = #{sort},
+			</if>
+			<if test='point != null and point != ""'>
+				POINT = #{point},
+			</if>
+			<if test='deliveryPrice != null and deliveryPrice != ""'>
+				DELIVERY_PRICE = #{deliveryPrice},
+			</if>
+			<if test='explain != null and explain != ""'>
+				`EXPLAIN` = #{explain},
+			</if>
+			<if test='goodsFileName != null and goodsFileName != ""'>
+				GOODS_FILE_NAME = #{goodsFileName},
+			</if>
+		</set>
+		WHERE
+			GOODS_CD = #{goodsCd}
+	</update>
+	
+	<delete id="deleteGoods" parameterType="int">
+		DELETE FROM GOODS WHERE GOODS_CD = #{goodsCd}
+	</delete>
 
 </mapper>

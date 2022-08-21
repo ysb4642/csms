@@ -8,6 +8,46 @@
 <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <script>
+
+	$(document).ready(function () {
+		var sort = "${goodsDto.sort }";
+		$("[name='sort']").val(sort);
+		
+		if (sort == "food") {
+			$("#taste").prop("disabled", false);
+			$("#expiryDateY").prop("disabled", false);
+			$("#expiryDateM").prop("disabled", false);
+			$("#expiryDateD").prop("disabled", false);
+			$("#capacity").prop("disabled", false);
+		}
+		else if (sort == "snack") {
+			$("#taste").prop("disabled", false);
+			$("#expiryDateY").prop("disabled", false);
+			$("#expiryDateM").prop("disabled", false);
+			$("#expiryDateD").prop("disabled", false);
+			$("#capacity").prop("disabled", true);
+		}
+		else {
+			$("#taste").prop("disabled", true);
+			$("#expiryDateY").prop("disabled", true);
+			$("#expiryDateM").prop("disabled", true);
+			$("#expiryDateD").prop("disabled", true);
+			$("#capacity").prop("disabled", true);
+		}
+		
+		if ("${goodsDto.expiryDate}" == "") {
+			$("[name='expiryDateY']").val("choice");
+			$("[name='expiryDateM']").val("choice");
+			$("[name='expiryDateD']").val("choice");
+		}
+		else {
+			var expiryDate = "${goodsDto.expiryDate }".split('-');
+			$("[name='expiryDateY']").val(expiryDate[0]);
+			$("[name='expiryDateM']").val(expiryDate[1]);
+			$("[name='expiryDateD']").val(expiryDate[2]);			
+		}
+		
+	});
 	
 	$(document).ready(function() {
 		$("#sort").change(function() {
@@ -168,38 +208,39 @@ function formValidationCheck() {
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('${contextPath }/resources/bootstrap/images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			상품등록
+			상품수정
 		</h2>
 	</section>	
 
 	<!-- Content page -->
 	<section class="bg0 p-t-20 p-b-20">
 		<div class="container">
-			<form action="${contextPath }/admin/goods/adminGoodsAdd" method="post" name="form" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
+			<form action="${contextPath }/admin/goods/adminGoodsModify" method="post" name="form" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
+					<input type="hidden" name="goodsCd" value="${goodsDto.goodsCd }">
 					<div class="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" align="left">
 						<h4 class="m-b-7">상품이미지<span style="color:red;">*</span></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="file" name="goodsFileName" class="stext-121 cl2 plh3 size-116 p-lr-18">
+							<input type="file" name="goodsFileName" value="${goodsDto.goodsFileName }" class="stext-121 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<h4 class="m-t-20"><label for="goodsNm">상품명<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="goodsNm" name="goodsNm" placeholder="상품명을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
+							<input type="text" id="goodsNm" name="goodsNm" value="${goodsDto.goodsNm }" class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<h4 class="m-t-20"><label for="brand">브랜드<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="brand" name="brand" placeholder="브랜드를 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
+							<input type="text" id="brand" name="brand" value="${goodsDto.brand }"class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<h4 class="m-t-20"><label for="price">가격<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="price" name="price" placeholder="가격을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
+							<input type="text" id="price" name="price" value="${goodsDto.price }" class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<h4 class="m-t-20"><label for="discountRate">할인율<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="discountRate" name="discountRate" placeholder="할인율을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
+							<input type="text" id="discountRate" name="discountRate" value="${goodsDto.discountRate }" class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<h4 class="m-t-20"><label for="point">적립포인트(P)<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="point" name="point" placeholder="적립 포인트(P)를 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18">
+							<input type="text" id="point" name="point" value="${goodsDto.point }" class="stext-111 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<div>
 	                    	<h4 class="m-t-20"><label for="sort">분류<span style="color:red;">*</span></label></h4>
@@ -215,19 +256,19 @@ function formValidationCheck() {
 	                   	</div>
 						<h4 class="m-t-20"><label for="taste">맛</label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="taste" name="taste" placeholder="맛을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18" disabled>
+							<input type="text" id="taste" name="taste" value="${goodsDto.taste }" class="stext-111 cl2 plh3 size-116 p-lr-18" disabled>
 						</div>
 						<div>
 	                    	<h4 class="m-t-20"><label for="expiryDateY">유통기한</label></h4>
-	                        <select id="expiryDateY" style="width:420px;height:52px;" class="bor19 m-b-1" disabled>
-	                        	<option value="choice">선택</option>
+	                        <select id="expiryDateY" name="expiryDateY" style="width:420px;height:52px;" class="bor19 m-b-1" disabled>
+	                            <option value="choice">선택</option>
 	                            <c:forEach var="i" begin="0" end="50">
 	                           		<option>${2022 + i}</option>
 	                           	</c:forEach>
 	                        </select>
-	                        <select id="expiryDateM" style="width:420px;height:52px;" class="bor19 size-218 m-b-1" disabled>
-                            	<option value="choice">선택</option>
+	                        <select id="expiryDateM" name="expiryDateM" style="width:420px;height:52px;" class="bor19 size-218 m-b-1" disabled>
 	                            <c:forEach var="i" begin="1" end="12">
+	                            	<option value="choice">선택</option>
 	                           		<c:choose>
 	                           			<c:when test="${i < 10 }">
 	                            			<option>0${i}</option>
@@ -238,9 +279,9 @@ function formValidationCheck() {
 	                           		</c:choose>
 	                           	</c:forEach>
 	                        </select>
-	                        <select id="expiryDateD" style="width:420px;height:52px;" class="bor19 size-218 m-b-1" disabled>
-                           		<option value="choice">선택</option>
+	                        <select id="expiryDateD" name="expiryDateD" style="width:420px;height:52px;" class="bor19 size-218 m-b-1" disabled>
 	                           	<c:forEach var="i" begin="1" end="31">
+	                           		<option value="choice">선택</option>
 	                           		<c:choose>
 	                           			<c:when test="${i < 10 }">
 	                           				<option>0${i}</option>
@@ -255,21 +296,21 @@ function formValidationCheck() {
 	                   	</div>
 	                   	<h4 class="m-t-20"><label for="capacity">중량</label></h4>
 						<div class="bor19 m-b-1" style="width:1000px;">
-							<input type="text" id="capacity" name="capacity" placeholder="중량을 입력하세요." class="stext-111 cl2 plh3 size-116 p-lr-18" disabled>
+							<input type="text" id="capacity" name="capacity" value="${goodsDto.capacity }"class="stext-111 cl2 plh3 size-116 p-lr-18" disabled>
 						</div>
 						<h4 class="m-t-20"><label for="stock">재고<span style="color:red;">*</span></label></h4>
 	                    <div class="bor19 m-b-0" style="width:1000px;">
-	                  		<input type="text" id="stock" name="stock" placeholder="재고를 입력하세요" class="stext-121 cl2 plh3 size-116 p-lr-18">
+	                  		<input type="text" id="stock" name="stock" value="${goodsDto.stock }" class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 						<h4 class="m-t-20"><label for="deliveryPrice">배송비<span style="color:red;">*</span></label></h4>
 						<div class="bor19 m-b-0" style="width:1000px;">
-	                    	<input type="text" id="deliveryPrice" name="deliveryPrice" placeholder="배송비를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
+	                    	<input type="text" id="deliveryPrice" name="deliveryPrice" value="${goodsDto.deliveryPrice }" class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 	                    <h4 class="m-t-20"><label for="explain">상품설명<span style="color:red;">*</span></label></h4>
-	                    	<textarea rows="5" cols="100" id="explain" name="explain" placeholder="상품설명을 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18"></textarea>
+	                    	<textarea rows="5" cols="100" id="explain" name="explain" class="stext-121 cl2 plh3 size-116 p-lr-18">${goodsDto.explain }</textarea>
 	                    	<script>CKEDITOR.replace('explain');</script>
 						<div class="m-t-20" align="center">
-		    				<button type="submit" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">등록</button>
+		    				<button type="submit" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">수정</button>
 						</div>
 					</div>
 			</form>

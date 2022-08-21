@@ -1,5 +1,7 @@
 package com.spring.csms.myPage.service;
 
-public interface MyPageService {
+import com.spring.csms.member.dto.MemberDto;
 
+public interface MyPageService {
+	public MemberDto getMyInfo(String memberId) throws Exception;
 }

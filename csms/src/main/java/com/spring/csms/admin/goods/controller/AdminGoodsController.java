@@ -33,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.csms.admin.goods.service.AdminGoodsService;
 import com.spring.csms.goods.dto.GoodsDto;
+import com.spring.csms.goods.service.GoodsService;
 
 @Controller
 @RequestMapping("/admin/goods")
@@ -41,8 +42,11 @@ public class AdminGoodsController {
 	@Autowired
 	private AdminGoodsService adminGoodsService;
 	
-	private static final String CURR_IMAGE_REPO_PATH = "//Users//ysb//file_repo";
-	private static final String SEPERATOR = "//";	// mac
+	@Autowired
+	private GoodsService goodsService;
+	
+	private static final String CURR_IMAGE_REPO_PATH = "/Users/ysb/file_repo";
+	private static final String SEPERATOR = "/";	// mac
 	
 //	private static final String CURR_IMAGE_REPO_PATH = "C:\\file_repo";
 //	private static final String SEPERATOR = "\\";	// window
@@ -69,8 +73,6 @@ public class AdminGoodsController {
 	public ResponseEntity<Object> adminGoodsAdd(MultipartHttpServletRequest multipartRequest)throws Exception {
 		
 		multipartRequest.setCharacterEncoding("utf-8");
-		
-		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 		
 		GoodsDto goodsDto = new GoodsDto();
 		goodsDto.setGoodsNm(multipartRequest.getParameter("goodsNm"));
@@ -208,6 +210,82 @@ public class AdminGoodsController {
 		
 	}
 	
+	@RequestMapping(value = "/adminGoodsModify", method = RequestMethod.GET)
+	public ModelAndView modifyGoods(@RequestParam("goodsCd") int goodsCd)throws Exception {
+		
+		ModelAndView mv = new ModelAndView("/admin/goods/adminGoodsModify");
+		mv.addObject("goodsDto", goodsService.getGoodsDetail(goodsCd));
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/adminGoodsModify" , method=RequestMethod.POST)
+	public ResponseEntity<Object> adminGoodsModify(MultipartHttpServletRequest multipartRequest) throws Exception {
+		
+		multipartRequest.setCharacterEncoding("utf-8");
+		
+		GoodsDto goodsDto = new GoodsDto();
+		goodsDto.setGoodsCd(Integer.parseInt(multipartRequest.getParameter("goodsCd")));
+		goodsDto.setGoodsNm(multipartRequest.getParameter("goodsNm"));
+		goodsDto.setPrice(Integer.parseInt(multipartRequest.getParameter("price")));
+		goodsDto.setTaste(multipartRequest.getParameter("taste"));
+		goodsDto.setExpiryDate(multipartRequest.getParameter("expiryDate"));
+		goodsDto.setCapacity(multipartRequest.getParameter("capacity"));
+		goodsDto.setDiscountRate(Integer.parseInt(multipartRequest.getParameter("discountRate")));
+		goodsDto.setStock(Integer.parseInt(multipartRequest.getParameter("stock")));
+		goodsDto.setBrand(multipartRequest.getParameter("brand"));
+		goodsDto.setSort(multipartRequest.getParameter("sort"));
+		goodsDto.setPoint(Integer.parseInt(multipartRequest.getParameter("point")));
+		goodsDto.setDeliveryPrice(Integer.parseInt(multipartRequest.getParameter("deliveryPrice")));
+		goodsDto.setExplain(multipartRequest.getParameter("explain"));
+		
+		
+		Iterator<String> file = multipartRequest.getFileNames();
+		if (file.hasNext()) {
+			
+			MultipartFile uploadFile = multipartRequest.getFile(file.next()); 	
+			
+			if (!uploadFile.getOriginalFilename().isEmpty()) {
+				String uploadFileName = UUID.randomUUID() + "_" + uploadFile.getOriginalFilename();
+				File f = new File(CURR_IMAGE_REPO_PATH + SEPERATOR + uploadFileName);	
+				uploadFile.transferTo(f); 
+				goodsDto.setGoodsFileName(uploadFileName);
+				
+				new File(CURR_IMAGE_REPO_PATH + SEPERATOR + goodsService.getGoodsDetail(Integer.parseInt(multipartRequest.getParameter("goodsCd"))).getGoodsFileName()).delete();
+				
+			}
+		}
+		
+		adminGoodsService.modifyGoods(goodsDto);
+		
+		String jsScript= "<script>";
+			   jsScript += " alert('상품정보를 수정하였습니다.');";
+			   jsScript +=" location.href='adminGoodsList';";
+			   jsScript +="</script>";
+			   
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "adminGoodsRemove", method=RequestMethod.GET)
+	public ResponseEntity<Object> adminGoodsRemove(@RequestParam("goodsCd") int goodsCd) throws Exception {
+		
+		new File(CURR_IMAGE_REPO_PATH + SEPERATOR + goodsService.getGoodsDetail(goodsCd).getGoodsFileName()).delete();
+		adminGoodsService.removeGoods(goodsCd);
+		
+		String jsScript= "<script>";
+			   jsScript += " alert('등록된 상품을 삭제하였습니다.');";
+			   jsScript +=" location.href='adminGoodsList';";
+			   jsScript +="</script>";
+		
+	   HttpHeaders httpHeaders = new HttpHeaders();
+	   httpHeaders.add("Content-Type", "text/html; charset=utf-8");
+	   
+	   return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
+	}
 	
 	
 }

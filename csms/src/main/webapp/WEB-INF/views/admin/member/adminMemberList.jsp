@@ -18,13 +18,13 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="${contextPath }" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="${contextPath }/" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Shoping Cart
+				관리자 회원관리
 			</span>
 		</div>
 	</div>
@@ -56,7 +56,7 @@
 											<tr>
 												<td style="height: 50px; text-align: center;"><h6>${i.count }</h6></td>
 												<td style="height: 50px; text-align: center;">
-													<h6><a href="#<%-- ${contextPath }/myPage/myInfo?memberId=${memberDto.memberId} --%>">${memberDto.memberId }</a></h6>												
+													<h6><a href="${contextPath }/myPage/myInfo?memberId=${memberDto.memberId}">${memberDto.memberId }</a></h6>												
 												</td>
 												<td style="height: 50px; text-align: center;"><strong>${memberDto.memberNm }</strong></td>
 												<td style="height: 50px; text-align: center;"><fmt:formatNumber value="${memberDto.point }"/>P</td>
