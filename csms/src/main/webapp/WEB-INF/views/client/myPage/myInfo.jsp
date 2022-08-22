@@ -8,50 +8,11 @@
 <script src="${contextPath}/resources/bootstrap/js/jquery-3.6.0.min.js"></script>
 <script>
 
-	var checkMemberId 	   = false;
-	var checkPasswd 	   = false
-	var checkConfirmPasswd = false;
-	var checkMemberNm	   = false;
-	var checkHp 		   = false;
-	var checkEmail 		   = false;
+	var checkMemberNm	   = true;
+	var checkHp 		   = true;
+	var checkEmail 		   = true;
 	
 	$(document).ready(function() {
-		
-		$("#memberId").blur(function(){
-			
-			var memberId = $("#memberId").val();
-			
-			if (memberId == "") {
-				$("#idMsg").html("<span style='color:red;'>필수정보 입니다.</span>");
-				checkMemberId = false;
-				return false ;
-			}
-			
-			var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
-	        if (!isID.test(memberId)) {
-	        	$("#idMsg").html("<span style='color:red;'>5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.</span>");
-	        	checkMemberId = false;
-	            return false ;
-	        }
-			
-			$.ajax({
-				type : "get",
-				url  : "${contextPath}/member/checkDuplicatedId?memberId=" + memberId,
-				success : function(data) {
-					if (data == "notDuplicated") {
-						$("#idMsg").html("<span style='color:blue;'>사용가능한 아이디입니다.</span>");
-						checkMemberId = true;
-						return true ;
-					} else {
-						$("#idMsg").html("<span style='color:red;'>이미 사용중인 아이디입니다.</span>");
-						checkMemberId = false;
-						return false ;
-					}
-				}
-			});
-			
-			
-		})
 		
 		var dateBirth = "${memberDto.dateBirth }".split('-');
 		$("[name='birthY']").val(dateBirth[0]);
@@ -61,62 +22,15 @@
 		var gender = "${memberDto.gender }";
 		$("[name='gender']").val(gender);
 		
-		var hp = "${memberDto.hp }";
-		$("[name='hp']").val(hp);
-		
 		var smsstsYn = "${memberDto.smsstsYn}";
 		if (smsstsYn == "Y") {
 			$("[name='smsstsYn']").prop('checked', true);
 		}
 		
 		var emailstsYn = "${memberDto.emailstsYn}";
-		if (smsstsYn == "Y") {
+		if (emailstsYn == "Y") {
 			$("[name='emailstsYn']").prop('checked', true);
 		}
-		
-		$("#passwd").blur(function() {
-			
-			var passwd = $("#passwd").val();
-			
-			if (passwd == "") {
-				$("#passwordMsg").html("<span style='color:red;'>비밀번호를 입력해주세요.</span>");
-				checkPasswd = false;
-	            return false ;
-	        }
-	        if (!isValidPasswd(passwd)) {
-	        	$("#passwordMsg").html("<span style='color:red;'>8~16자 영문 대 소문자, 숫자, 특수문자를 포함하세요.</span>");
-	        	checkPasswd = false;
-	            return false ;
-	        }
-	        
-	        $("#passwordMsg").html("<span></span>");
-	        checkPasswd = true;
-	        $("#confirmPasswd").focus();
-	        return true ;
-		})
-		
-		$("#confirmPasswd").blur(function() {
-			
-			var passwd		  = $("#passwd").val();
-			var confirmPasswd = $("#confirmPasswd").val();
-			
-			if (confirmPasswd == "") {
-				$("#confirmPasswdMsg").html("<span style='color:red;'>비밀번호를 입력해주세요.</span>");
-				checkConfirmPasswd = false;
-	            return false ;
-			}
-			
-			if (passwd != confirmPasswd) {
-				$("#confirmPasswdMsg").html("<span style='color:red;'>비밀번호가 일치하지 않습니다.</span>");
-				checkConfirmPasswd = false;
-	            return false ;
-			} else {
-				$("#confirmPasswdMsg").html("<span style='color:blue;'>일치합니다.</span>");
-				checkConfirmPasswd = true;
-				return true ;
-			}
-			
-		})
 		
 		$("#memberNm").blur(function() {
 			
@@ -183,43 +97,16 @@
 		
 	});
 	
-	function isValidPasswd(str) {
-		var pattern1 = /[0-9]/; // 숫자
-		var pattern2 = /[a-zA-Z]/; // 문자
-		var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-		if(!pattern1.test(str) || !pattern2.test(str) || !pattern3.test(str) || str.length < 8 || str.length > 16) {
-			return false;
-		} else {
-			return true;
+	function removeMember() {
+		if (confirm("정말로 탈퇴하시겠습니까?")) {
+			location.href = "${contextPath}/myPage/removeMember?memberId=" + $("#memberId").val();
 		}
 	}
 	
-	function checkSpace(passwd) {
-        if (passwd.search(/\s/) != -1) {
-            return true;
-        }
-        return false;
-    }
+	
 	
 	function formValidationCheck() {
 		
-		if (!checkMemberId) {
-			alert("아이디를 확인하세요.");
-			document.form.memberId.focus();
-			return false;
-		}
-		
-		if (!checkPasswd) {
-			alert("비밀번호를 확인하세요.");
-			document.form.passwd.focus();
-			return false;
-		}
-		
-		if (!checkConfirmPasswd) {
-			alert("비밀번호를 확인하세요.");
-			document.form.passwd.focus();
-			return false;
-		}
 		
 		if (!checkMemberNm) {
 			alert("이름을 확인하세요.");
@@ -260,7 +147,7 @@
 	<!-- Content page -->
 	<section class="bg0 p-t-20 p-b-20">
 		<div class="container">
-			<form action="${contextPath }/member/register" method="post" name="form" onsubmit="return formValidationCheck()">
+			<form action="${contextPath }/myPage/modifyInfo" method="post" name="form" onsubmit="return formValidationCheck()">
 				<div class="flex-w flex-tr">
 					<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 						<h5 style="margin-right: 18%;"><label for="memberId">아이디<span style="color:red;">*</span></label></h5>
@@ -312,17 +199,20 @@
 	                       	<input type="hidden" name="dateBirth"/>
 	                   	</div>
 	                   	<div>
-	                  		<h5 style="margin-right: 19%;" class="m-t-20"><label for="gender">성별</label></h5>
-	                  		<select id="gender" name="gender" class="bor19 size-218 m-b-20" style="width:297px;height:45px;">
+	                  		<h5 style="margin-right: 19%;"><label for="gender">성별</label></h5>
+	                  		<select id="gender" name="gender" class="bor19 size-218 m-b-200" style="width:297px;height:45px;">
 	                  				<option value="m" selected>남자</option>
 	                  						 <option value="f">여자</option>
 	                  		</select>
 	                    </div>
+	                    <a href="javascript:removeMember();">
+		                    <button type="button" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">탈퇴</button>
+	                    </a>
 					</div>
 					<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 						<h5 style="margin-right: 17%;"><label for="hp">휴대전화<span style="color:red;">*</span></label></h5>
 	                    <div class="bor19 size-218 m-b-0">
-	                  		<input type="text" id="hp" name="hp" class="stext-121 cl2 plh3 size-116 p-lr-18">
+	                  		<input type="text" id="hp" name="hp" value = "${memberDto.hp }" class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 	                    <span id="hpMsg"></span>
 	                    <label for="smsstsYn" class="row" style="margin-left: 0.2%;">
@@ -331,7 +221,7 @@
 	                    </label>
 						<h5 style="margin-right: 18%;" class="m-t-20"><label for="email">이메일<span style="color:red;">*</span></label></h5>
 						<div class="bor19 size-218 m-b-0">
-	                    	<input type="text" id="email" name="email" placeholder="이메일을 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
+	                    	<input type="text" id="email" name="email" value="${memberDto.email }" class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 	                    <span id="emailMsg"></span>
 	                    <label for="emailstsYn" class="row" style="margin-left: 0.2%;">
@@ -341,27 +231,27 @@
 						<h5 style="margin-right: 17%;" class="m-t-20"><label for="postalCode">우편번호</label></h5>
 						<div class="row">
 							<div class="bor19 size-218 m-b-20" style="margin-left: 3.5%;">
-								<input type="text" id="postalCode" name="postalCode" class="stext-121 cl2 plh3 size-116 p-lr-18">
+								<input type="text" id="postalCode" name="postalCode" value="${memberDto.postalCode }" class="stext-121 cl2 plh3 size-116 p-lr-18">
 							</div>
 						<input type="button" value="검색" onclick="execDaumPostcode();" style="width: 10%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 						</div>
 						<h5 style="margin-right: 15%;"><label for="roadAddress">도로명 주소</label></h5>
 						<div class="bor19 size-218 m-b-20">
-							<input class="stext-121 cl2 plh3 size-116 p-lr-18" type="text" id="roadAddress" name="roadAddress" placeholder="도로명 주소를 입력하세요.">
+							<input class="stext-121 cl2 plh3 size-116 p-lr-18" type="text" id="roadAddress" name="roadAddress" value="${memberDto.roadAddress }">
 						</div>
 						<span id="roadAddressMsg"></span>
 						<h5 style="margin-right: 16%;" class="m-t-20"><label for="parcelAddress">지번 주소</label></h5>
 						<div class="bor19 size-218 m-b-20">
-							<input type="text" id="parcelAddress" name="parcelAddress" placeholder="지번 주소를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18" >
+							<input type="text" id="parcelAddress" name="parcelAddress" value="${memberDto.parcelAddress }" class="stext-121 cl2 plh3 size-116 p-lr-18" >
 						</div>
 						<span id="parcelAddressMsg"></span>
 						<h5 style="margin-right: 15%;" class="m-t-20"><label for="restAddress">나머지 주소</label></h5>
 						<div class="bor19 size-218 m-b-40">
-							<input type="text" id="restAddress" name="restAddress" placeholder="나머지 주소를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18" >
+							<input type="text" id="restAddress" name="restAddress" value="${memberDto.restAddress }" class="stext-121 cl2 plh3 size-116 p-lr-18" >
 						</div>
 						<span id="restAddressAddressMsg"></span>
 						<div align="center">
-		    				<button type="submit" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">가입</button>
+		    				<button type="submit" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">수정</button>
 						</div>
 					</div>
 				</div>

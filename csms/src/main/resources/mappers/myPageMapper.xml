@@ -11,4 +11,64 @@
 		WHERE
 				MEMBER_ID = #{memberId}
 	</select>
+	
+	<update id="updateMyInfo" parameterType="MemberDto">
+		UPDATE
+				MEMBER
+		<set>
+			<if test='memberNm != null and memberNm != ""'>
+				MEMBER_NM = #{memberNm},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				DATE_BIRTH = #{dateBirth},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				GENDER = #{gender},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				HP = #{hp},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				SMSSTS_YN = #{smsstsYn},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				EMAIL = #{email},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				EMAILSTS_YN = #{emailstsYn},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				POSTAL_CODE = #{postalCode},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				ROAD_ADDRESS = #{roadAddress},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				PARCEL_ADDRESS = #{parcelAddress},
+			</if>
+			<if test='memberNm != null and memberNm != ""'>
+				REST_ADDRESS = #{restAddress},
+			</if>
+		</set>
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+	
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM
+				MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

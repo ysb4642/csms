@@ -17,4 +17,14 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sqlSession.selectOne("myPage.selectOneMyInfo", memberId);
 	}
 
+	@Override
+	public void updateMyInfo(MemberDto memberDto) throws Exception {
+		sqlSession.update("myPage.updateMyInfo", memberDto);
+	}
+
+	@Override
+	public void deleteMember(String memberId) throws Exception {
+		sqlSession.delete("myPage.deleteMember", memberId);
+	}
+
 }

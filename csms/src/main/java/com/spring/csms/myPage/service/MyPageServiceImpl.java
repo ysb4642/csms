@@ -17,4 +17,17 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.selectOneMyInfo(memberId);
 	}
 
+	@Override
+	public void modifyMyInfo(MemberDto memberDto) throws Exception {
+		if (memberDto.getSmsstsYn() == null) memberDto.setSmsstsYn("N"); 
+		if (memberDto.getEmailstsYn() == null) memberDto.setEmailstsYn("N");
+		myPageDao.updateMyInfo(memberDto);
+		
+	}
+
+	@Override
+	public void removeMember(String memberId) throws Exception {
+		myPageDao.deleteMember(memberId);
+	}
+
 }

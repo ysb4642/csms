@@ -36,6 +36,11 @@
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div align="right" class="m-b-20">
+							<button type="button" style="width:10%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" onclick="location.href='${contextPath}/admin/member/memberExcelExport'">
+								EXCEL
+							</button>
+						</div>
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
