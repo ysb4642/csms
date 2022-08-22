@@ -1,5 +1,8 @@
 package com.spring.csms.goods.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,10 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public GoodsDto getGoodsDetail(int goodsCd) throws Exception {
 		return goodsDao.selectOneGoods(goodsCd);
+	}
+	@Override
+	public List<GoodsDto> getGoodsList(Map<String, String> goodsListMap) throws Exception {
+		return goodsDao.selectGoodsList(goodsListMap);
 	}
 
 }

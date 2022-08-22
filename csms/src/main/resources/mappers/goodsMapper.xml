@@ -13,4 +13,19 @@
 			GOODS_CD = #{goodsCd}
 	
 	</select>
+	
+	<select id="selectListGoods" parameterType="String" resultType="GoodsDto">
+		SELECT
+				*
+		FROM
+				GOODS
+		<where>
+			<if test='sort.equals("all")'>
+				SORT IN ('food', 'snack', 'sand', 'beauty', 'toy', 'catTower')
+			</if>
+			<if test='!sort.equals("all")'>
+				SORT = #{sort}
+			</if>
+		</where>
+	</select>
 </mapper>

@@ -7,5 +7,10 @@
 		<put-attribute name="title" value="상품 상세"/>
 		<put-attribute name="body" value="/WEB-INF/views/client/goods/goodsDetail.jsp"/>
 	</definition>
+	
+	<definition name="/goods/goodsList" extends="baseLayout">
+		<put-attribute name="title" value="상품 리스트"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/goods/goodsList.jsp"/>
+	</definition>
 
 </tiles-definitions>

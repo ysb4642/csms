@@ -1,5 +1,7 @@
 package com.spring.csms.goods.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,15 @@ public class GoodsController {
 		GoodsDto goodsDto = goodsService.getGoodsDetail(goodsCd);
 		
 		mv.addObject("goodsDto", goodsDto);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/goodsList", method = RequestMethod.GET)
+	public ModelAndView goodsList(@RequestParam Map<String, String> goodsListMap) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("/goods/goodsList");
+		mv.addObject("goodsList", goodsService.getGoodsList(goodsListMap));
 		
 		return mv;
 	}

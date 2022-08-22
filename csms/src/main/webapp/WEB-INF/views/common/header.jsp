@@ -28,7 +28,7 @@
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="${contextPath }/goods/goodsList?sort=all">Shop</a>
 							</li>
 							<c:choose>
 								<c:when test="${sessionScope.role eq 'admin' }">
