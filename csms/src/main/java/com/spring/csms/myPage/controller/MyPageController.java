@@ -15,6 +15,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.csms.member.dto.MemberDto;
+import com.spring.csms.myPage.dto.CartDto;
 import com.spring.csms.myPage.service.MyPageService;
 
 @Controller
@@ -67,6 +68,25 @@ public class MyPageController {
 			   jsScript += "</script>";
 		
 		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
+	public ResponseEntity<Object> addCart(@RequestParam("goodsCd") int goodsCd, @RequestParam("cartGoodsQty") int cartGoodsQty, HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		
+		CartDto cartDto = new CartDto();
+		cartDto.setMemberId((String)session.getAttribute("memberId"));
+		cartDto.setGoodsCd(goodsCd);
+		cartDto.setCartGoodsQty(cartGoodsQty);
+		
+		String result = "duple";
+		if (!myPageService.checkDuplicatedCart(cartDto)) {
+			myPageService.addCart(cartDto);
+			result = "notDuple";
+		}
+		
+		return new ResponseEntity<Object>(result, HttpStatus.OK);
 	}
 }
 

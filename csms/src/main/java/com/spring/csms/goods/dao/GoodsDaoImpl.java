@@ -25,4 +25,9 @@ public class GoodsDaoImpl implements GoodsDao {
 		return sqlSession.selectList("goods.selectListGoods", goodsListMap);
 	}
 
+	@Override
+	public List<GoodsDto> selectRelatedGoodsList(Map<String, Object> goodsMap) throws Exception {
+		return sqlSession.selectList("goods.selectListRelatedGoods", goodsMap);
+	}
+
 }

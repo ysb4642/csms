@@ -1,5 +1,6 @@
 package com.spring.csms.goods.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,13 @@ public class GoodsController {
 	public ModelAndView goodsDetail(@RequestParam("goodsCd") int goodsCd) throws Exception {
 		
 		ModelAndView mv = new ModelAndView("/goods/goodsDetail");
-		
 		GoodsDto goodsDto = goodsService.getGoodsDetail(goodsCd);
-		
 		mv.addObject("goodsDto", goodsDto);
 		
+		Map<String, Object> goodsMap = new HashMap<>();
+		goodsMap.put("sort", goodsDto.getSort());
+		goodsMap.put("goodsCd", goodsCd);
+		mv.addObject("relatedGoodsList", goodsService.getRelatedGoodsList(goodsMap));
 		return mv;
 	}
 	

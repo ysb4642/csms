@@ -60,6 +60,31 @@
 		WHERE
 				MEMBER_ID = #{memberId}
 	</delete>
+	
+	<select id="selectOneDuplicatedCart" parameterType="CartDto" resultType="CartDto">
+		SELECT
+				*
+		FROM
+				CART
+		WHERE
+				MEMBER_ID = #{memberId} AND
+				GOODS_CD = #{goodsCd}
+	</select>
+	
+	<insert id="insertCart" parameterType="CartDto">
+		INSERT INTO
+			CART (GOODS_CD,
+				  CART_GOODS_QTY,
+				  MEMBER_ID,
+				  ENROLL_DT
+		)
+		VALUES (
+				#{goodsCd},
+				#{cartGoodsQty},
+				#{memberId},
+				NOW()
+		)
+	</insert>
 </mapper>
 
 

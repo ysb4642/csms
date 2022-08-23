@@ -22,5 +22,9 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<GoodsDto> getGoodsList(Map<String, String> goodsListMap) throws Exception {
 		return goodsDao.selectGoodsList(goodsListMap);
 	}
+	@Override
+	public List<GoodsDto> getRelatedGoodsList(Map<String, Object> goodsMap) throws Exception {
+		return goodsDao.selectRelatedGoodsList(goodsMap);
+	}
 
 }

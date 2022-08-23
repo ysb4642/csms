@@ -9,5 +9,6 @@ public interface GoodsDao {
 
 	public GoodsDto selectOneGoods(int goodsCd) throws Exception;
 	public List<GoodsDto> selectGoodsList(Map<String, String> goodsListMap) throws Exception;
+	public List<GoodsDto> selectRelatedGoodsList(Map<String, Object> goodsMap) throws Exception;
 
 }

@@ -9,4 +9,5 @@ public interface GoodsService {
 	
 	public GoodsDto getGoodsDetail(int goodsCd) throws Exception;
 	public List<GoodsDto> getGoodsList(Map<String, String> goodsListMap) throws Exception;
+	public List<GoodsDto> getRelatedGoodsList(Map<String, Object> goodsMap) throws Exception;
 }

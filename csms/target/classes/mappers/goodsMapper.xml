@@ -28,4 +28,15 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="selectListRelatedGoods" parameterType="HashMap" resultType="GoodsDto">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = #{sort} AND GOODS_CD != #{goodsCd}
+		LIMIT
+				4
+	</select>
 </mapper>

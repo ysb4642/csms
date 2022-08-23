@@ -2,11 +2,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="sessionId" value="${sessionScope.memberId }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script>
+
+	function processToCart(goodsCd) {
+		if ("${sessionId == null}" == "true") {
+			alert("로그인을 진행해주세요.");
+			location.href = "${contextPath }/member/login";
+		}
+		else {
+			$.ajax({
+				url : "${contextPath }/myPage/addCart",
+				method : "get",
+				data : {"goodsCd" : goodsCd , "cartGoodsQty" : $("#orderGoodsQty").val()},
+				success : function(result) {
+					
+					if (result == "duple") {
+						alert('이미 추가된 품목입니다.');
+					}
+					else {
+						alert('장바구니에 추가되었습니다.');
+					}
+					
+				}
+			})
+		}
+	}
+
+</script>
 </head>
 <body>
 	
@@ -95,14 +122,14 @@
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="orderGoodsQty" id="orderGoodsQty" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button onclick="processToCart(${goodsDto.goodsCd })" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 										Add to cart
 									</button>
 								</div>
@@ -315,15 +342,6 @@
 			</div>
 		</div>
 
-		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
-			</span>
-
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
-			</span>
-		</div>
 	</section>
 
 
@@ -339,261 +357,41 @@
 			<!-- Slide2 -->
 			<div class="wrap-slick2">
 				<div class="slick2">
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-01.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
-									</a>
-
-									<span class="stext-105 cl3">
-										$16.64
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
+					<c:forEach var="relatedGoods" items="${relatedGoodsList }">
+					
+						<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-pic hov-img0">
+									<img src="${contextPath }/thumbnails?goodsFileName=${relatedGoods.goodsFileName}" width="270px" height="340px" alt="IMG-PRODUCT">
+	
+									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+										Quick View
 									</a>
 								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-02.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Herschel supply
-									</a>
-
-									<span class="stext-105 cl3">
-										$35.31
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
+	
+								<div class="block2-txt flex-w flex-t p-t-14">
+									<div class="block2-txt-child1 flex-col-l ">
+										<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+											${relatedGoods.goodsNm }
+										</a>
+	
+										<span class="stext-105 cl3">
+											<div class="product__details__price"><fmt:formatNumber value="${relatedGoods.price - (relatedGoods.price * relatedGoods.discountRate / 100)}" /><span><fmt:formatNumber value="${relatedGoods.price }"/></span></div>
+										</span>
+									</div>
+	
+									<div class="block2-txt-child2 flex-r p-t-3">
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+											<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
+											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</c:forEach>
 
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-03.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Only Check Trouser
-									</a>
-
-									<span class="stext-105 cl3">
-										$25.50
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-04.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Classic Trench Coat
-									</a>
-
-									<span class="stext-105 cl3">
-										$75.00
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-05.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Front Pocket Jumper
-									</a>
-
-									<span class="stext-105 cl3">
-										$34.75
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-06.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Vintage Inspired Classic 
-									</a>
-
-									<span class="stext-105 cl3">
-										$93.20
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-07.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Shirt in Stretch Cotton
-									</a>
-
-									<span class="stext-105 cl3">
-										$52.66
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${contextPath }/resources/bootstrap/images/product-08.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Pieces Metallic Printed
-									</a>
-
-									<span class="stext-105 cl3">
-										$18.96
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="${contextPath }/resources/bootstrap/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
