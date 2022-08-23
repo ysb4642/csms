@@ -25,7 +25,14 @@
 				$("#expiryDateY").prop("disabled", false);
 				$("#expiryDateM").prop("disabled", false);
 				$("#expiryDateD").prop("disabled", false);
-				$("#capacity").prop("disabled", true);
+				$("#capacity").prop("disabled", false);
+			}
+			else if (sort == "sand") {
+				$("#taste").prop("disabled", true);
+				$("#expiryDateY").prop("disabled", true);
+				$("#expiryDateM").prop("disabled", true);
+				$("#expiryDateD").prop("disabled", true);
+				$("#capacity").prop("disabled", false);
 			}
 			else {
 				$("#taste").prop("disabled", true);
@@ -142,11 +149,11 @@ function formValidationCheck() {
 		    return false;
 		}
 		
-		var explain = document.form.explain
-		if (explain.value == "") {
-			alert("상품설명을 입력하세요.");
-			explain.focus();
-			return false;
+		// 입력 내용 받기 = CKEDITOR.instances.textarea태그의id.getData();
+		if(CKEDITOR.instances.explain.getData() =='' || CKEDITOR.instances.explain.getData().length == 0){
+			 alert("상품설명을 입력하세요.");
+		    $("#explain").focus();
+		    return false;
 		}
 		
 		var expiryDate
@@ -266,7 +273,7 @@ function formValidationCheck() {
 	                    	<input type="text" id="deliveryPrice" name="deliveryPrice" placeholder="배송비를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 	                    </div>
 	                    <h4 class="m-t-20"><label for="explain">상품설명<span style="color:red;">*</span></label></h4>
-	                    	<textarea rows="5" cols="100" id="explain" name="explain" placeholder="상품설명을 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18"></textarea>
+	                    	<textarea rows="5" cols="100" id="explain" name="explain" class="stext-121 cl2 plh3 size-116 p-lr-18"></textarea>
 	                    	<script>CKEDITOR.replace('explain');</script>
 						<div class="m-t-20" align="center">
 		    				<button type="submit" style="width:80%;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">등록</button>
