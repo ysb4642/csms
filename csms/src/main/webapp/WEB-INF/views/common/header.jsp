@@ -47,9 +47,6 @@
 									
 								</c:when>
 								<c:otherwise>
-									<li class="label1" data-label1="hot">
-										<a href="shoping-cart.html">Features</a>
-									</li>
 									<c:choose>
 										<c:when test="${sessionScope.memberId eq null }">
 											<li>
@@ -61,6 +58,14 @@
 											</li>
 										</c:when>
 										<c:otherwise>
+											<li>
+												<a href="#">My Pages</a>
+												<ul class="sub-menu">
+													<li><a href="${contextPath }/myPage/myInfo?memberId=${sessionScope.memberId}"><span class="lnr lnr-pencil" ></span>&emsp;My Info</a></li>
+													<li><a href="${contextPath }/myPage/myCartList"><span class="lnr lnr-cart"></span>&emsp;My Cart</a></li>
+													<li><a href="${contextPath }/myPage/myOrderList"><span class="lnr lnr-bubble"></span>&emsp;My Order</a></li>
+												</ul>
+											</li>
 											<li>
 												<a href="${contextPath }/member/logout">logout</a>
 											</li>

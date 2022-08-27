@@ -18,7 +18,7 @@
 			$.ajax({
 				url : "${contextPath }/myPage/addCart",
 				method : "get",
-				data : {"goodsCd" : goodsCd , "cartGoodsQty" : $("#orderGoodsQty").val()},
+				data : {"goodsCd" : goodsCd , "cartGoodsQty" : $("#cartGoodsQty").val()},
 				success : function(result) {
 					
 					if (result == "duple") {
@@ -122,7 +122,7 @@
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="orderGoodsQty" id="orderGoodsQty" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="cartGoodsQty" id="cartGoodsQty" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>

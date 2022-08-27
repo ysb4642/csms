@@ -1,5 +1,8 @@
 package com.spring.csms.myPage.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +48,31 @@ public class MyPageServiceImpl implements MyPageService {
 	public void addCart(CartDto cartDto) throws Exception {
 		myPageDao.insertCart(cartDto);
 		
+	}
+
+	@Override
+	public List<Map<String, Object>> getMyCartList(String memberId) throws Exception {
+		return myPageDao.selectListMyCart(memberId);
+	}
+
+	@Override
+	public void removeCart(int[] deleteCartCdList) throws Exception {
+		myPageDao.deleteCart(deleteCartCdList);
+	}
+
+	@Override
+	public void modifyCartGoodsQty(Map<String, Object> updateMap) throws Exception {
+		myPageDao.updateCartGoodsQty(updateMap);
+	}
+
+	@Override
+	public List<Map<String, Object>> getMyOrderList(String memberId) throws Exception {
+		return myPageDao.selectListMyOrder(memberId);
+	}
+
+	@Override
+	public Map<String, Object> getMyOrderDetail(Map<String, Object> orderDetailMap) throws Exception {
+		return myPageDao.selectOneMyOrder(orderDetailMap);
 	}
 
 }

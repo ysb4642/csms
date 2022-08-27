@@ -1,5 +1,8 @@
 package com.spring.csms.myPage.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,6 +39,31 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public void insertCart(CartDto cartDto) throws Exception {
 		sqlSession.insert("myPage.insertCart", cartDto);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectListMyCart(String memberId) throws Exception {
+		return sqlSession.selectList("myPage.selctListMyCart", memberId);
+	}
+
+	@Override
+	public void deleteCart(int[] deleteCartCdList) throws Exception {
+		sqlSession.delete("myPage.deleteCart", deleteCartCdList);
+	}
+
+	@Override
+	public void updateCartGoodsQty(Map<String, Object> updateMap) throws Exception {
+		sqlSession.update("myPage.updateCartGoodsQty", updateMap);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectListMyOrder(String memberId) throws Exception {
+		return sqlSession.selectList("myPage.selectListMyOrder", memberId);
+	}
+
+	@Override
+	public Map<String, Object> selectOneMyOrder(Map<String, Object> orderDetailMap) throws Exception {
+		return sqlSession.selectOne("myPage.selectOneMyOrder", orderDetailMap);
 	}
 
 }

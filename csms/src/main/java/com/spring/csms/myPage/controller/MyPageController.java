@@ -1,5 +1,7 @@
 package com.spring.csms.myPage.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.csms.member.dto.MemberDto;
@@ -88,7 +89,91 @@ public class MyPageController {
 		
 		return new ResponseEntity<Object>(result, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/myCartList", method = RequestMethod.GET)
+	public ModelAndView myCartList(HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		
+		ModelAndView mv = new ModelAndView("/cart/myCartList");
+		
+		String memberId = (String)session.getAttribute("memberId");
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+//		mv.addObject("countCartList", myPageService.countCartList(memberId));
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/removeCart", method = RequestMethod.GET)
+	public ResponseEntity<Object> removeCart(@RequestParam("cartCdList") String cartCdList) throws Exception {
+		
+		String[] temp = cartCdList.split(",");
+		int[] deleteCartCdList = new int[temp.length];
+		
+		for (int i = 0; i < temp.length; i++) {
+			deleteCartCdList[i] = Integer.parseInt(temp[i]);
+		}
+		myPageService.removeCart(deleteCartCdList);
+		
+		String jsScript = "<script>";
+			   jsScript += "alert('장바구니 품목이 삭제되었습니다.');";
+			   jsScript += "location.href = 'myCartList';";
+			   jsScript += "</script>";
+		
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value = "/modifyCartGoodsQty", method = RequestMethod.GET)
+	public ResponseEntity<Object> modifyCartGoodsQty(@RequestParam Map<String, Object> updateMap) throws Exception {
+		myPageService.modifyCartGoodsQty(updateMap);
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/myOrderList", method = RequestMethod.GET)
+	public ModelAndView myOrderList(HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		
+		ModelAndView mv = new ModelAndView("/myPage/myOrderList");
+		mv.addObject("myOrderList", myPageService.getMyOrderList((String)session.getAttribute("memberId")));
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/myOrderDetail", method = RequestMethod.GET)
+	public ModelAndView myOrderDetail(@RequestParam Map<String, Object> orderDetailMap) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("/myPage/myOrderDetail");
+		mv.addObject("myOrder", myPageService.getMyOrderDetail(orderDetailMap));
+		
+		return mv;
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

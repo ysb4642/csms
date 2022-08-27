@@ -85,6 +85,161 @@
 				NOW()
 		)
 	</insert>
+	
+	<resultMap type="hashmap" id="cartMap">
+		<result column="CART_CD"		 property="cartCd" />
+		<result column="MEMBER_ID"		 property="memberId" />
+		<result column="CART_GOODS_QTY"	 property="cartGoodsQty" />
+		<result column="ENROLL_DT"		 property="enrollDt" />
+		<result column="GOODS_CD"		 property="goodsCd" />
+		<result column="GOODS_NM"		 property="goodsNm" />
+		<result column="PRICE"			 property="price" />
+		<result column="BRAND"			 property="brand" />
+		<result column="DISCOUNT_RATE"	 property="discountRate" />
+		<result column="POINT"			 property="point" />
+		<result column="GOODS_FILE_NAME" property="goodsFileName" />
+	</resultMap>
+	
+	<select id="selctListMyCart" parameterType="String" resultMap="cartMap">
+		SELECT
+				C.CART_CD	  	   AS CART_CD,
+				C.MEMBER_ID        AS MEMBER_ID,
+				C.CART_GOODS_QTY   AS CART_GOODS_QTY,
+				C.ENROLL_DT		   AS ENROLL_DT,
+				G.GOODS_CD  	   AS GOODS_CD,
+				G.GOODS_NM		   AS GOODS_NM,
+				G.PRICE    		   AS PRICE,
+				G.BRAND    	   	   AS BRAND,
+				G.DISCOUNT_RATE    AS DISCOUNT_RATE,
+				G.POINT			   AS POINT,
+				G.GOODS_FILE_NAME  AS GOODS_FILE_NAME
+		FROM
+				CART C
+		  JOIN GOODS G
+		  		  ON C.GOODS_CD = G.GOODS_CD
+		WHERE
+				C.MEMBER_ID = #{memberId}
+		ORDER BY
+				C.ENROLL_DT DESC
+	</select>
+	
+	<delete id="deleteCart">
+		DELETE FROM
+				CART
+		WHERE
+				CART_CD IN
+		<foreach collection="array" item="cartCd" separator="," open="(" close=")">
+			#{cartCd}
+		</foreach>
+	</delete>
+	
+	<update id="updateCartGoodsQty" parameterType="hashmap">
+		UPDATE
+				CART
+		SET
+				CART_GOODS_QTY = #{cartGoodsQty}
+		WHERE
+				CART_CD = #{cartCd}
+	
+	</update>
+	
+	<resultMap type="hashmap" id="myOrderListMap">
+		<result column="ORDER_CD" 		 property="orderCd"/>
+		<result column="MEMBER_ID" 		 property="memberId"/>
+		<result column="ORDER_GOODS_QTY" property="orderGoodsQty"/>
+		<result column="PAYMENT_AMT" 	 property="paymentAmt"/>
+		<result column="PAY_ORDER_TIME"  property="payOrderTime"/>
+		<result column="GOODS_CD" 		 property="goodsCd"/>
+		<result column="GOODS_NM" 		 property="goodsNm"/>
+		<result column="PRICE" 		 	 property="price"/>
+		<result column="GOODS_FILE_NAME" property="goodsFileName"/>
+	</resultMap>
+	
+	<select id="selectListMyOrder" parameterType="String" resultMap="myOrderListMap">
+		SELECT
+				O.ORDER_CD 		  	AS ORDER_CD,
+				O.MEMBER_ID			AS MEMBER_ID,
+		        O.ORDER_GOODS_QTY 	AS ORDER_GOODS_QTY,
+		        O.PAYMENT_AMT 		AS PAYMENT_AMT,
+		        O.PAY_ORDER_TIME  	AS PAY_ORDER_TIME,
+		        G.GOODS_CD  	  	AS GOODS_CD,
+		        G.GOODS_NM  	  	AS GOODS_NM,
+		        G.PRICE				AS PRICE,
+		        G.GOODS_FILE_NAME 	AS GOODS_FILE_NAME
+		FROM
+				`ORDER` O
+			 JOIN GOODS G
+					 ON O.GOODS_CD = G.GOODS_CD
+					AND O.MEMBER_ID = #{memberId}
+	</select>
+	
+	
+	<resultMap type="hashmap" id="myOrderDetailMap">
+		<result column="ORDER_CD" 		 	property="orderCd"/>
+		<result column="ORDER_GOODS_QTY" 	property="orderGoodsQty"/>
+		<result column="PAYMENT_AMT" 		property="paymentAmt"/>
+		<result column="ORDERER_NM"  		property="ordererNm"/>
+		<result column="ORDERER_HP" 		property="ordererHp"/>
+		<result column="RECEIVER_NM" 		property="receiverNm"/>
+		<result column="RECEIVER_HP" 		property="receiverHp"/>
+		<result column="POSTAL_CODE" 		property="postalCode"/>
+		<result column="ROAD_ADDRESS" 		property="roadAddress"/>
+		<result column="PARCEL_ADDRESS" 	property="parcelAddress"/>
+		<result column="REST_ADDRESS" 		property="restAddress"/>
+		<result column="DELIVERY_METHOD" 	property="deliveryMethod"/>
+		<result column="DELIVERY_MESSAGE" 	property="deliveryMessage"/>
+		<result column="PAY_METHOD" 		property="payMethod"/>
+		<result column="PAY_ORDERER_HP" 	property="payOrdererHp"/>
+		<result column="PAY_ORDER_TIME" 	property="payOrderTime"/>
+		<result column="CARD_COMPANY_NM" 	property="cardCompanyNm"/>
+		<result column="CARD_PAY_MONTH" 	property="cardPayMonth"/>
+		<result column="DELIVERY_STATUS" 	property="deliveryStatus"/>
+		<result column="GOODS_CD" 			property="goodsCd"/>
+		<result column="GOODS_NM" 			property="goodsNm"/>
+		<result column="PRICE" 				property="price"/>
+		<result column="DISCOUNT_RATE" 		property="discountRate"/>
+		<result column="POINT" 				property="point"/>
+		<result column="GODOS_FILE_NAME"	property="goodsFileName"/>
+		<result column="BRAND"				property="brand"/>
+	</resultMap>
+	
+	<select id="selectOneMyOrder" parameterType="hashmap" resultMap="myOrderDetailMap">
+		SELECT
+				O.ORDER_CD		   AS ORDER_CD,
+		        O.ORDER_GOODS_QTY  AS ORDER_GOODS_QTY,
+		        O.PAYMENT_AMT 	   AS PAYMENT_AMT,
+		        O.ORDERER_NM	   AS ORDERER_NM,
+		        O.ORDERER_HP 	   AS ORDERER_HP,
+		        O.RECEIVER_NM 	   AS RECEIVER_NM,
+		        O.RECEIVER_HP 	   AS RECEIVER_HP,
+		        O.POSTAL_CODE 	   AS POSTAL_CODE,
+		        O.ROAD_ADDRESS     AS ROAD_ADDRESS,
+		        O.PARCEL_ADDRESS   AS PARCEL_ADDRESS,
+		        O.REST_ADDRESS     AS REST_ADDRESS,
+		        O.DELIVERY_METHOD  AS DELIVERY_METHOD,
+		        O.DELIVERY_MESSAGE AS DELIVERY_MESSAGE,
+		        O.PAY_METHOD 	   AS PAY_METHOD,
+		        O.PAY_ORDERER_HP   AS PAY_ORDERER_HP,
+		        O.PAY_ORDER_TIME   AS PAY_ORDER_TIME,
+		        O.CARD_COMPANY_NM  AS CARD_COMPANY_NM,
+		        O.CARD_PAY_MONTH   AS CARD_PAY_MONTH,
+		        O.DELIVERY_STATUS  AS DELIVERY_STATUS,
+		        G.GOODS_CD 		   AS GOODS_CD,
+		        G.GOODS_NM 		   AS GOODS_NM,
+		        G.PRICE 		   AS PRICE,
+		        G.DISCOUNT_RATE    AS DISCOUNT_RATE,
+		        G.POINT 		   AS POINT,
+		        G.GOODS_FILE_NAME  AS GODOS_FILE_NAME,
+		        G.BRAND			   AS BRAND
+		FROM
+				`ORDER` O
+			JOIN MEMBER M
+					 ON M.MEMBER_ID = O.MEMBER_ID
+					AND M.MEMBER_ID = #{memberId}
+		     JOIN GOODS G
+					 ON G.GOODS_CD = O.GOODS_CD
+					AND O.ORDER_CD = #{orderCd}
+	</select>
 </mapper>
 
 

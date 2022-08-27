@@ -12,6 +12,7 @@
 		<typeAlias type="com.spring.csms.admin.member.dto.AdminDto"   alias="AdminDto" />
 		<typeAlias type="com.spring.csms.goods.dto.GoodsDto" 		  alias="GoodsDto"/>
 		<typeAlias type="com.spring.csms.myPage.dto.CartDto" 		  alias="CartDto"/>
+		<typeAlias type="com.spring.csms.order.dto.OrderDto" 		  alias="OrderDto"/>
 	</typeAliases>
 	
 </configuration>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+
+	<select id="selectOneOrderer" parameterType="String" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+	<select id="selectListCartGoods" resultType="GoodsDto">
+		SELECT
+				*
+		FROM
+				GOODS G
+			JOIN CART C
+				   ON G.GOODS_CD = C.GOODS_CD
+				  AND G.GOODS_CD IN
+				  		<foreach collection="array" item="goodsCd" separator="," open="(" close=")">
+				  			#{goodsCd}
+				  		</foreach>
+		ORDER BY
+				C.ENROLL_DT DESC
+	</select>
+	
+	<update id="updateGoodsStockCntByCart">
+		<foreach collection="list" item="goodsMap" separator=";" >
+			UPDATE
+					GOODS
+			SET
+					STOCK = STOCK - #{goodsMap.orderGoodsQty}
+			WHERE
+					GOODS_CD = #{goodsMap.goodsCd}
+		</foreach> 
+	</update>
+	
+	<insert id="insertOrderByCart">
+		INSERT INTO
+			`ORDER` (
+				MEMBER_ID,
+				GOODS_CD,
+				ORDER_GOODS_QTY,
+				PAYMENT_AMT,
+				ORDERER_NM,
+				ORDERER_HP,
+				RECEIVER_NM,
+				RECEIVER_HP,
+				POSTAL_CODE,
+				ROAD_ADDRESS,
+				PARCEL_ADDRESS,
+				REST_ADDRESS,
+				DELIVERY_METHOD,
+				DELIVERY_MESSAGE,
+				DELIVERY_STATUS,
+				PAY_METHOD,
+				PAY_ORDERER_HP,
+				CARD_COMPANY_NM,
+				CARD_PAY_MONTH,
+				PAY_ORDER_TIME
+			)
+		VALUES
+			<foreach collection="list" item="orderDto" separator=",">
+				(
+					#{orderDto.memberId},
+				    #{orderDto.goodsCd},
+				    #{orderDto.orderGoodsQty},
+				    #{orderDto.paymentAmt},
+				    #{orderDto.ordererNm},
+	                #{orderDto.ordererHp},
+				    #{orderDto.receiverNm},
+				    #{orderDto.receiverHp},
+				    #{orderDto.postalCode},
+				    #{orderDto.roadAddress},
+				    #{orderDto.parcelAddress},
+				    #{orderDto.restAddress},
+	                #{orderDto.deliveryMethod},
+	                #{orderDto.deliveryMessage},
+	                '배송준비중',
+	                #{orderDto.payMethod},
+	                #{orderDto.payOrdererHp},
+	                #{orderDto.cardCompanyNm},
+	                #{orderDto.cardPayMonth},
+	                NOW()
+				)
+			</foreach>
+	</insert>
+	
+	<delete id="deleteCartByOrder">
+		DELETE FROM
+				CART
+		WHERE
+				CART_CD IN
+				<foreach collection="array" item="cartCd" separator="," open="(" close=")">
+					#{cartCd}
+				</foreach>
+	</delete>
+	
+	<update id="updateMemberPointByCart" parameterType="hashmap">
+		UPDATE
+				MEMBER
+		SET
+				POINT = POINT + #{point}
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

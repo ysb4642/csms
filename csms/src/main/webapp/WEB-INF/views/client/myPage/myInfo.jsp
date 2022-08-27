@@ -50,7 +50,7 @@
 			$("#memberNmMsg").html("<span></span>");
 			checkMemberNm = true;
 			return true ;			
-		})
+		});
 		
 		$("#hp").blur(function() {
 			
@@ -71,7 +71,7 @@
 			checkHp = false;
 		    return false ;
 			
-		})
+		});
 		
 		$("#email").blur(function() {
 			
@@ -93,7 +93,7 @@
 			checkEmail = false;
 		    return false ;
 			
-		})
+		});
 		
 	});
 	
@@ -106,7 +106,6 @@
 	
 	
 	function formValidationCheck() {
-		
 		
 		if (!checkMemberNm) {
 			alert("이름을 확인하세요.");

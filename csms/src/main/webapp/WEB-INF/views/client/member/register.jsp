@@ -330,7 +330,7 @@
 						</div>
 						<h5 style="margin-right: 15%;"><label for="roadAddress">도로명 주소</label></h5>
 						<div class="bor19 size-218 m-b-20">
-							<input class="stext-121 cl2 plh3 size-116 p-lr-18" type="text" id="roadAddress" name="roadAddress" placeholder="도로명 주소를 입력하세요.">
+							<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명 주소를 입력하세요." class="stext-121 cl2 plh3 size-116 p-lr-18">
 						</div>
 						<span id="roadAddressMsg"></span>
 						<h5 style="margin-right: 16%;" class="m-t-20"><label for="parcelAddress">지번 주소</label></h5>
