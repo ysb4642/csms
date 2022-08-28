@@ -108,6 +108,26 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+	@Override
+	public GoodsDto getGoodsDetail(int goodsCd) throws Exception {
+		return orderDao.selectOneCartGoods(goodsCd);
+	}
+
+	@Override
+	@Transactional
+	public void addOrder(OrderDto orderDto, int point) throws Exception {
+		
+		Map<String, Object> orderMap = new HashMap<String, Object>();
+		orderMap.put("point", point);
+		orderMap.put("orderGoodsQty", orderDto.getOrderGoodsQty());
+		orderMap.put("goodsCd", orderDto.getGoodsCd());
+		orderMap.put("memberId", orderDto.getMemberId());
+		
+		orderDao.updateGoodsStockCnt(orderMap);
+		orderDao.updateMemberPoint(orderMap);
+		orderDao.insertOrder(orderDto);
+	}
+
 }
 
 

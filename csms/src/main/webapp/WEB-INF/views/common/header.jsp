@@ -37,8 +37,8 @@
 										<ul class="sub-menu">
 											<li><a href="${contextPath }/admin/goods/adminGoodsList">Goods Management</a></li>
 											<li><a href="${contextPath }/admin/member/adminMemberList">User Management</a></li>
-											<li><a href="#">Order Management</a></li>
-											<li><a href="#">Contact Management</a></li>
+											<li><a href="${contextPath }/admin/order/adminOrderList">Order Management</a></li>
+											<li><a href="${contextPath }/contactList">Contact Management</a></li>
 										</ul>
 									</li>
 									<li>
@@ -72,7 +72,7 @@
 										</c:otherwise>
 									</c:choose>
 									<li>
-										<a href="contact.html">Contact</a>
+										<a href="${contextPath}/contact">Contact</a>
 									</li>
 								</c:otherwise>
 							</c:choose>

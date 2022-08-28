@@ -254,9 +254,13 @@
 	
 	
 	function formValidationCheck() {
-		var orderGoodsQtyList = {
-"[name='orderGoodsQtyList']"	.val();e		var goodsCdList = $("[name='orderGoodsQtyList']").val();
-kOrdererHp) {
+		
+		if (!checkOrdererNm) {
+			alert("주문자 이름을 확인하세요.");
+			document.form.ordererNm.focus();
+			return false;
+		}
+		if (!checkOrdererHp) {
 			alert("주문자 연락처를 확인하세요.");
 			document.form.ordererHp.focus();
 			return false;
@@ -278,7 +282,7 @@ kOrdererHp) {
 		}
 		if (!checkPayHp) {
 			alert("결제 휴대폰 번호를 확인하세요.");
-			document.form.payHp.focus();
+			document.form.payOrdererHp.focus();
 			return false;
 		}
 		if (!checkPostalCode) {
@@ -455,7 +459,7 @@ kOrdererHp) {
 	                    <div id="payOrdererHp">
 	                   		<h5 style="margin-right: 19%;">결제 휴대폰 번호<span style="color:red;">*</span></h5>
 							<div class="bor19 size-218 m-b-1">
-								<input type="text" name="payHp" id="payHp" value="${orderer.hp }" class="stext-111 cl2 plh3 size-116 p-lr-18" >
+								<input type="text" name="payOrdererHp" id="payHp" value="${orderer.hp }" class="stext-111 cl2 plh3 size-116 p-lr-18" >
 							</div>
 							<span id="payHpMsg"></span>
 	                    </div>

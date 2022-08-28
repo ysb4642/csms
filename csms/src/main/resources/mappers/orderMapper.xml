@@ -107,6 +107,81 @@
 		WHERE
 				MEMBER_ID = #{memberId}
 	</update>
+	
+	<select id="selectOneCartGoods" parameterType="int" resultType="GoodsDto">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				GOODS_CD = #{goodsCd}
+	</select>
+	
+	<update id="updateGoodsStockCnt" parameterType="hashmap">
+		UPDATE
+				GOODS
+		SET
+				STOCK = STOCK - #{orderGoodsQty}
+		WHERE
+				GOODS_CD = #{goodsCd}
+	</update>
+	
+	<update id="updateMemberPoint" parameterType="hashmap">
+		UPDATE
+				MEMBER
+		SET
+				POINT = POINT + #{point}
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+	
+	<insert id="insertOrder" parameterType="OrderDto">
+		INSERT INTO
+			`ORDER` (
+				MEMBER_ID,
+			    GOODS_CD,
+				ORDER_GOODS_QTY,
+				PAYMENT_AMT,
+			    ORDERER_NM,
+			    ORDERER_HP,
+			    RECEIVER_NM,
+				RECEIVER_HP,
+				POSTAL_CODE,
+				ROAD_ADDRESS,
+				PARCEL_ADDRESS,
+				REST_ADDRESS,
+				DELIVERY_METHOD,
+				DELIVERY_MESSAGE,
+			    DELIVERY_STATUS,
+				PAY_METHOD,
+				PAY_ORDERER_HP,
+				CARD_COMPANY_NM,
+			    CARD_PAY_MONTH,
+				PAY_ORDER_TIME			
+			)
+			VALUES (
+				#{memberId},
+			    #{goodsCd},
+			    #{orderGoodsQty},
+			    #{paymentAmt},
+			    #{ordererNm},
+                #{ordererHp},
+			    #{receiverNm},
+			    #{receiverHp},
+			    #{postalCode},
+			    #{roadAddress},
+			    #{parcelAddress},
+			    #{restAddress},
+                #{deliveryMethod},
+                #{deliveryMessage},
+                '배송준비중',
+                #{payMethod},
+                #{payOrdererHp},
+                #{cardCompanyNm},
+                #{cardPayMonth},
+                NOW()
+			)
+	</insert>
 </mapper>
 
 

@@ -6,4 +6,9 @@
 		<put-attribute name="title" value="장바구니 주문 페이지" />
     	<put-attribute name="body" value="/WEB-INF/views/client/order/orderCartGoods.jsp" />
 	</definition>
+	
+	<definition name="/order/orderGoods" extends="baseLayout">
+       <put-attribute name="title" value="상품 주문 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/client/order/orderGoods.jsp" />
+    </definition>
 </tiles-definitions>

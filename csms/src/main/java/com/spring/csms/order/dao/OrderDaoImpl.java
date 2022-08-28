@@ -49,4 +49,24 @@ public class OrderDaoImpl implements OrderDao {
 		sqlSession.update("order.updateMemberPointByCart", memberMap);
 	}
 
+	@Override
+	public GoodsDto selectOneCartGoods(int goodsCd) throws Exception {
+		return sqlSession.selectOne("order.selectOneCartGoods", goodsCd);
+	}
+
+	@Override
+	public void updateGoodsStockCnt(Map<String, Object> orderMap) throws Exception {
+		sqlSession.update("order.updateGoodsStockCnt" , orderMap);
+	}
+
+	@Override
+	public void updateMemberPoint(Map<String, Object> orderMap) throws Exception {
+		sqlSession.update("order.updateMemberPoint" , orderMap);
+	}
+
+	@Override
+	public void insertOrder(OrderDto orderDto) throws Exception {
+		sqlSession.insert("order.insertOrder" , orderDto);
+	}
+
 }

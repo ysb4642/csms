@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin.order">
+	
+	<resultMap type="hashmap" id="orderListMap">
+		<result column="ORDER_CD" 		 	property="orderCd"/>
+		<result column="ORDER_GOODS_QTY" 	property="orderGoodsQty"/>
+		<result column="PAY_ORDER_TIME"  	property="payOrderTime"/>
+		<result column="MEMBER_ID"  	 	property="memberId"/>
+		<result column="DELIVERY_STATUS"  	property="deliveryStatus"/>
+		<result column="GOODS_CD" 		 	property="goodsCd"/>
+		<result column="GOODS_NM" 			property="goodsNm"/>
+		<result column="PRICE" 		 	 	property="price"/>
+		<result column="BRAND" 		 		property="brand"/>
+		<result column="GOODS_FILE_NAME" 	property="goodsFileName"/>
+	</resultMap>
+	
+	<select id="selectListOrder" resultMap="orderListMap">
+		SELECT
+				O.ORDER_CD 		  	AS ORDER_CD,
+		        O.ORDER_GOODS_QTY 	AS ORDER_GOODS_QTY,
+		        O.PAY_ORDER_TIME  	AS PAY_ORDER_TIME,
+		        O.MEMBER_ID			AS MEMBER_ID,
+		        O.DELIVERY_STATUS	AS DELIVERY_STATUS,
+		        G.GOODS_CD  	  	AS GOODS_CD,
+		        G.GOODS_NM  	  	AS GOODS_NM,
+		        G.PRICE				AS PRICE,
+		        G.BRAND				AS BRAND,
+		        G.GOODS_FILE_NAME 	AS GOODS_FILE_NAME
+		FROM
+				`ORDER` O
+				  JOIN  GOODS  G
+				    ON  O.GOODS_CD = G.GOODS_CD
+	</select>
+
+</mapper>

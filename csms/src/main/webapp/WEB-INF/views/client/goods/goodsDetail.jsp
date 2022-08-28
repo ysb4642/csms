@@ -32,6 +32,18 @@
 			})
 		}
 	}
+	
+	function processToOrder(goodsCd) {
+		
+		if ("${sessionId == null}" == "true") {
+			alert("로그인을 진행해주세요.");
+			location.href = "${contextPath }/member/login";
+		}
+		else {
+			location.href = "${contextPath }/order/orderGoods?goodsCd="+goodsCd+"&orderGoodsQty="+$("#cartGoodsQty").val();
+		}
+	}
+	
 
 </script>
 </head>
@@ -128,10 +140,14 @@
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
-
-									<button onclick="processToCart(${goodsDto.goodsCd })" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-										Add to cart
-									</button>
+									<div class="row">
+										<button onclick="processToCart(${goodsDto.goodsCd })" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 m-r-10">
+											Add to cart
+										</button>
+										<button onclick="processToOrder(${goodsDto.goodsCd })" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+											Order
+										</button>
+									</div>
 								</div>
 						<div class="col-sm-10 col-md-8 col-lg-6 m-t-20">
 							<ul>

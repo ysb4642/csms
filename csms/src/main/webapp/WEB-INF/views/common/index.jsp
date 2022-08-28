@@ -101,12 +101,12 @@
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
 			<div class="slick1">
-				<div class="item-slick1 bg-overlay1" style="background-image: url(${contextPath }/resources/bootstrap/images/slide-05.jpg);" data-thumb="${contextPath }/resources/bootstrap/images/thumb-01.jpg" data-caption="Women’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(${contextPath }/resources/bootstrap/images/slide01.jpg);" data-thumb="${contextPath }/resources/bootstrap/images/thumb01.jpg" data-caption="Women’s Wear">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-202 txt-center cl0 respon2">
-									Women Collection 2018
+									cat's supplies
 								</span>
 							</div>
 								
@@ -125,18 +125,18 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 bg-overlay1" style="background-image: url(${contextPath }/resources/bootstrap/images/slide-06.jpg);" data-thumb="${contextPath }/resources/bootstrap/images/thumb-02.jpg" data-caption="Men’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(${contextPath }/resources/bootstrap/images/slide02.jpg);" data-thumb="${contextPath }/resources/bootstrap/images/thumb02.jpg" data-caption="Men’s Wear">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
 								<span class="ltext-202 txt-center cl0 respon2">
-									Men New-Season
+									cat's supplies
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
 								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									Jackets & Coats
+									Sand & beauty
 								</h2>
 							</div>
 								
@@ -149,18 +149,18 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 bg-overlay1" style="background-image: url(${contextPath }/resources/bootstrap/images/slide-07.jpg);" data-thumb="${contextPath }/resources/bootstrap/images/thumb-03.jpg" data-caption="Men’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(${contextPath }/resources/bootstrap/images/slide03.jpg);" data-thumb="${contextPath }/resources/bootstrap/images/thumb03.jpg" data-caption="Men’s Wear">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
 								<span class="ltext-202 txt-center cl0 respon2">
-									Men Collection 2018
+									cat's supplies
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
 								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									NEW SEASON
+									cat Tower & Scratcher & toy
 								</h2>
 							</div>
 								

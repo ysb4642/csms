@@ -13,6 +13,20 @@
 		<put-attribute name="title" value="메인" />
 		<put-attribute name="body" value="/WEB-INF/views/common/index.jsp" />
 	</definition>
-		
+	
+	<definition name="/contact" extends="baseLayout">
+		<put-attribute name="title" value="CONTACT" />
+		<put-attribute name="body" value="/WEB-INF/views/common/contact.jsp" />
+	</definition>
+	
+	<definition name="/contactList" extends="baseLayout">
+		<put-attribute name="title" value="CONTACTLIST" />
+		<put-attribute name="body" value="/WEB-INF/views/common/contactList.jsp" />
+	</definition>
+	
+	<definition name="/contactDetail" extends="baseLayout">
+		<put-attribute name="title" value="CONTACTDETAIL" />
+		<put-attribute name="body" value="/WEB-INF/views/common/contactDetail.jsp" />
+	</definition>
 		
 </tiles-definitions>

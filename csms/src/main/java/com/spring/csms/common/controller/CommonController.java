@@ -5,16 +5,22 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.csms.common.dto.ContactDto;
+import com.spring.csms.common.service.CommonService;
 import com.spring.csms.goods.service.GoodsService;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -41,6 +47,9 @@ public class CommonController {
 	
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private CommonService commonService;
 	
 	@RequestMapping(value = "/",  method = RequestMethod.GET)
 	public ModelAndView index() throws Exception{
@@ -76,6 +85,66 @@ public class CommonController {
 		out.close();
 	}
 	
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public ModelAndView contact() throws Exception {
+		return new ModelAndView("/contact");
+	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public ResponseEntity<Object> contact(ContactDto contactDto, HttpServletRequest request) throws Exception {
+		
+		commonService.addNewContact(contactDto);
+		
+		String jsScript  = "<script>";
+			   jsScript += "alert('contact가 등록 되었습니다.');";
+			   jsScript += "location.href='" + request.getContextPath() + "/';";
+			   jsScript += "</script>";
+		
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/contactList" , method=RequestMethod.GET)
+	public ModelAndView contactList() throws Exception{
+		ModelAndView mv = new ModelAndView("/contactList");
+		mv.addObject("contactList", commonService.getContactList());
+		return mv;
+	}
+	
+	@RequestMapping(value="/contactDetail" , method=RequestMethod.GET)
+	public ModelAndView contactDetail(@RequestParam("contactCd") int contactCd) throws Exception{
+		ModelAndView mv = new ModelAndView("/contactDetail");
+		mv.addObject("contactDto", commonService.getContactDetail(contactCd));
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/removeContact", method=RequestMethod.GET)
+	public ResponseEntity<Object> removeContact(@RequestParam("contactCdList") String contactCdList) throws Exception {
+		
+		String[] temp = contactCdList.split(",");
+		int[] deleteContactCdList = new int[temp.length];
+		
+		for (int i = 0; i < temp.length; i++) {
+			deleteContactCdList[i] = Integer.parseInt(temp[i]);
+		}
+		
+		commonService.removeContact(deleteContactCdList);
+		
+		String jsScript = "<script>";
+			   jsScript += "alert('contact 정보를 삭제하였습니다.'); ";
+			   jsScript += "location.href='contactList';";
+			   jsScript += "</script>";
+			   
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
+		
+	}
 }
 
 

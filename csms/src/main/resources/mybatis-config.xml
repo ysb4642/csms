@@ -13,6 +13,7 @@
 		<typeAlias type="com.spring.csms.goods.dto.GoodsDto" 		  alias="GoodsDto"/>
 		<typeAlias type="com.spring.csms.myPage.dto.CartDto" 		  alias="CartDto"/>
 		<typeAlias type="com.spring.csms.order.dto.OrderDto" 		  alias="OrderDto"/>
+		<typeAlias type="com.spring.csms.common.dto.ContactDto" 	  alias="ContactDto"/>
 	</typeAliases>
 	
 </configuration>

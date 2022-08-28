@@ -32,7 +32,6 @@
 		totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " 원";
 		$("#totalPrice").html(totalPrice);
 	}
-
 	
 	function selectAllCart() {
 		if ($("#changeAllChoice").prop("checked")) {

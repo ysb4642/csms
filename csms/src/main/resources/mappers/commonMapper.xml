@@ -2,5 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="common">
-
+	
+	<insert id="insertContact" parameterType="ContactDto">
+		INSERT INTO CONTACT(
+				EMAIL,
+				SUBJECT,
+				CONTENT,
+				REG_DT
+		)
+		VALUES (
+				#{email},
+				#{subject},
+				#{content},
+				NOW()
+		)
+	</insert>
+	
+	<select id="selectListContact" resultType="ContactDto">
+		SELECT
+				*
+		FROM
+				CONTACT
+		ORDER BY
+				REG_DT DESC
+	</select>
+	
+	<select id="selectOneContact" parameterType="int" resultType="ContactDto">
+		SELECT
+				*
+		FROM
+				CONTACT
+		WHERE
+				CONTACT_CD = #{contactCd}
+	</select>
+	
+	<delete id="deleteContact" >
+		DELETE FROM
+				CONTACT
+		WHERE
+				CONTACT_CD IN 
+		<foreach collection="array" item="contactCd" separator="," open="("  close=")" >
+				#{contactCd}
+		</foreach>
+	</delete>
 </mapper>
