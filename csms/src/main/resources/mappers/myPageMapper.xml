@@ -240,6 +240,16 @@
 					 ON G.GOODS_CD = O.GOODS_CD
 					AND O.ORDER_CD = #{orderCd}
 	</select>
+	
+	<select id="selectCountMyCart" parameterType="String" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM
+				CART
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
 </mapper>
 
 

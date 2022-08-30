@@ -28,34 +28,29 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Wishlist
+						<a href="${contextPath }/myPage/myCartList" class="stext-102 cl2 hov-cl1 trans-04">
+							My Cart
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Account
+						<a href="${contextPath }/myPage/myOrderList" class="stext-102 cl2 hov-cl1 trans-04">
+							My Order
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="${contextPath }/myPage/myInfo?memberId=${sessionScope.memberId}" class="stext-102 cl2 hov-cl1 trans-04">
 							My Info
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Refunds
+						<a href="${contextPath}/contact" class="stext-102 cl2 hov-cl1 trans-04">
+							Contact
 						</a>
 					</li>
 
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Help & FAQs
-						</a>
-					</li>
 				</ul>
 
 				<div class="sidebar-gallery w-full p-tb-30">

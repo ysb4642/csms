@@ -18,4 +18,5 @@ public interface MyPageDao {
 	public void updateCartGoodsQty(Map<String, Object> updateMap) throws Exception;
 	public List<Map<String, Object>> selectListMyOrder(String memberId) throws Exception;
 	public Map<String, Object> selectOneMyOrder(Map<String, Object> orderDetailMap) throws Exception;
+	public int selectCountMyCart(String memberId) throws Exception;
 }

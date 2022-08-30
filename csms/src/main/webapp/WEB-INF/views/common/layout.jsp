@@ -75,6 +75,7 @@
 	<!-- Header -->
 	
 	<tiles:insertAttribute name="header" />
+	
 
 	<!-- Sidebar -->
 	

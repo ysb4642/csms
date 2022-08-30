@@ -66,4 +66,10 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sqlSession.selectOne("myPage.selectOneMyOrder", orderDetailMap);
 	}
 
+	@Override
+	public int selectCountMyCart(String memberId) throws Exception {
+		return sqlSession.selectOne("myPage.selectCountMyCart" , memberId);
+	}
+
+
 }

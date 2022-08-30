@@ -51,11 +51,6 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<Map<String, Object>> getMyCartList(String memberId) throws Exception {
-		return myPageDao.selectListMyCart(memberId);
-	}
-
-	@Override
 	public void removeCart(int[] deleteCartCdList) throws Exception {
 		myPageDao.deleteCart(deleteCartCdList);
 	}
@@ -73,6 +68,16 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public Map<String, Object> getMyOrderDetail(Map<String, Object> orderDetailMap) throws Exception {
 		return myPageDao.selectOneMyOrder(orderDetailMap);
+	}
+
+	@Override
+	public List<Map<String, Object>> getMyCartList(String memberId) throws Exception {
+		return myPageDao.selectListMyCart(memberId);
+	}
+
+	@Override
+	public int countCartList(String memberId) throws Exception {
+		return myPageDao.selectCountMyCart(memberId);
 	}
 
 }

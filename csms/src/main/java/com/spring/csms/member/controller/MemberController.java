@@ -9,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.csms.member.dto.MemberDto;
 import com.spring.csms.member.service.MemberService;
+import com.spring.csms.myPage.service.MyPageService;
 
 @Controller
 @RequestMapping("/member")
@@ -39,8 +39,6 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", memberDto.getMemberId());
 			session.setAttribute("role", "client");
-//			session.setAttribute("myOrderCnt", memberService.getMyOrderCnt(memberDto.getMemberId()));
-//			session.setAttribute("myCartCnt", memberService.getMyCartCnt(memberDto.getMemberId()));
 			session.setMaxInactiveInterval(60 * 30);
 			
 			jsScript  = "<script>";

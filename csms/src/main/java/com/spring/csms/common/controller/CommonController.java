@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.csms.common.dto.ContactDto;
 import com.spring.csms.common.service.CommonService;
 import com.spring.csms.goods.service.GoodsService;
+import com.spring.csms.myPage.service.MyPageService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -51,12 +54,23 @@ public class CommonController {
 	@Autowired
 	private CommonService commonService;
 	
+	@Autowired
+	private MyPageService myPageService;
+	
 	@RequestMapping(value = "/",  method = RequestMethod.GET)
-	public ModelAndView index() throws Exception{
+	public ModelAndView index(HttpServletRequest request) throws Exception{
+		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		
+		ModelAndView mv = new ModelAndView("/index");
+		
 		Map<String, String> goodsListMap = new HashedMap<>();
 		goodsListMap.put("sort", "all");
-		ModelAndView mv = new ModelAndView("/index");
+		
 		mv.addObject("goodsList", goodsService.getGoodsList(goodsListMap));
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		return mv;
 	}
 	
@@ -86,8 +100,17 @@ public class CommonController {
 	}
 	
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public ModelAndView contact() throws Exception {
-		return new ModelAndView("/contact");
+	public ModelAndView contact(HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		
+		ModelAndView mv = new ModelAndView("/contact");
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
+		
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "/contact", method = RequestMethod.POST)
@@ -108,14 +131,21 @@ public class CommonController {
 	}
 	
 	@RequestMapping(value="/contactList" , method=RequestMethod.GET)
-	public ModelAndView contactList() throws Exception{
+	public ModelAndView contactList(HttpServletRequest request) throws Exception{
+		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		
 		ModelAndView mv = new ModelAndView("/contactList");
 		mv.addObject("contactList", commonService.getContactList());
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		return mv;
 	}
 	
 	@RequestMapping(value="/contactDetail" , method=RequestMethod.GET)
 	public ModelAndView contactDetail(@RequestParam("contactCd") int contactCd) throws Exception{
+		
 		ModelAndView mv = new ModelAndView("/contactDetail");
 		mv.addObject("contactDto", commonService.getContactDetail(contactCd));
 		

@@ -141,7 +141,14 @@
 		<h2 class="ltext-105 cl0 txt-center">
 			회원정보
 		</h2>
-	</section>	
+	</section>
+	
+	<c:if test="${sessionScope.memberId eq null}">
+		<script>
+			alert("로그인을 먼저 진행해주세요.");
+			location.href = "${contextPath}/member/login";
+		</script>
+	</c:if>
 
 	<!-- Content page -->
 	<section class="bg0 p-t-20 p-b-20">

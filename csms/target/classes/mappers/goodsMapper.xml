@@ -39,4 +39,47 @@
 		LIMIT
 				4
 	</select>
+	
+	<select id="selectListSearchGoods" parameterType="String" resultType="GoodsDto">
+		
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				GOODS_NM LIKE CONCAT('%', #{searchGoods}, '%') OR
+				BRAND	 LIKE CONCAT('%', #{searchGoods}, '%') OR
+				TASTE	 LIKE CONCAT('%', #{searchGoods}, '%')
+				
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

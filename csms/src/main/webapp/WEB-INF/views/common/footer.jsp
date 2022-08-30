@@ -19,26 +19,26 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+							<a href="${contextPath }/goods/goodsList?sort=all" class="stext-107 cl7 hov-cl1 trans-04">
+								food & snack
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
+							<a href="${contextPath }/goods/goodsList?sort=all" class="stext-107 cl7 hov-cl1 trans-04">
+								sand & beauty
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+							<a href="${contextPath }/goods/goodsList?sort=all" class="stext-107 cl7 hov-cl1 trans-04">
+								toy
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
+							<a href="${contextPath }/goods/goodsList?sort=all" class="stext-107 cl7 hov-cl1 trans-04">
+								catTower & scratcher
 							</a>
 						</li>
 					</ul>
@@ -51,25 +51,25 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="${contextPath}/contact" class="stext-107 cl7 hov-cl1 trans-04">
 								Track Order
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="${contextPath}/contact" class="stext-107 cl7 hov-cl1 trans-04">
 								Returns 
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="${contextPath}/contact" class="stext-107 cl7 hov-cl1 trans-04">
 								Shipping
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="${contextPath}/contact" class="stext-107 cl7 hov-cl1 trans-04">
 								FAQs
 							</a>
 						</li>
@@ -82,7 +82,9 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						서울특별시 강남구 강남대로94길 13<br>
+						삼경빌딩 1층~5층, <br>
+						02-588-9991
 					</p>
 
 					<div class="p-t-27">

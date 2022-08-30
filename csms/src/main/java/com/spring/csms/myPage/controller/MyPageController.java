@@ -30,7 +30,11 @@ public class MyPageController {
 	public ModelAndView myInfo(@RequestParam("memberId") String memberId) throws Exception  {
 		
 		ModelAndView mv = new ModelAndView("/myPage/myInfo");
+		
 		mv.addObject("memberDto", myPageService.getMyInfo(memberId));
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
+		
 		return mv;
 				
 	}
@@ -99,7 +103,7 @@ public class MyPageController {
 		
 		String memberId = (String)session.getAttribute("memberId");
 		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
-//		mv.addObject("countCartList", myPageService.countCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		
 		return mv;
 	}
@@ -137,18 +141,28 @@ public class MyPageController {
 	public ModelAndView myOrderList(HttpServletRequest request) throws Exception {
 		
 		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
 		
 		ModelAndView mv = new ModelAndView("/myPage/myOrderList");
-		mv.addObject("myOrderList", myPageService.getMyOrderList((String)session.getAttribute("memberId")));
+		
+		mv.addObject("myOrderList", myPageService.getMyOrderList(memberId));
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		
 		return mv;
 	}
 	
 	@RequestMapping(value = "/myOrderDetail", method = RequestMethod.GET)
-	public ModelAndView myOrderDetail(@RequestParam Map<String, Object> orderDetailMap) throws Exception {
+	public ModelAndView myOrderDetail(@RequestParam Map<String, Object> orderDetailMap, HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
 		
 		ModelAndView mv = new ModelAndView("/myPage/myOrderDetail");
+		
 		mv.addObject("myOrder", myPageService.getMyOrderDetail(orderDetailMap));
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		
 		return mv;
 		
