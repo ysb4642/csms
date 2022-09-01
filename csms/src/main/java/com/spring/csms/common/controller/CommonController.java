@@ -81,7 +81,7 @@ public class CommonController {
 //	private static final String CURR_IMAGE_REPO_PATH = "C:\\file_repo";
 //	private static final String SEPERATOR = "\\";	// window
 
-//	private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat8/file_repo";
+//	private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat9/file_repo";
 //	private static final String SEPERATOR = "/";		// linux
 	
 	@RequestMapping(value = "/thumbnails", method = RequestMethod.GET)
