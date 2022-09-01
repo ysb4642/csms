@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.csms.goods.dto.GoodsDto;
 import com.spring.csms.goods.service.GoodsService;
 import com.spring.csms.myPage.service.MyPageService;
+import com.spring.csms.review.service.ReviewService;
 
 @Controller
 @RequestMapping("/goods")
@@ -26,6 +27,9 @@ public class GoodsController {
 	
 	@Autowired
 	private MyPageService myPageService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping(value = "/goodsDetail", method = RequestMethod.GET)
 	public ModelAndView goodsDetail(@RequestParam("goodsCd") int goodsCd, HttpServletRequest request) throws Exception {
@@ -41,11 +45,13 @@ public class GoodsController {
 		GoodsDto goodsDto = goodsService.getGoodsDetail(goodsCd);
 		mv.addObject("goodsDto", goodsDto);
 		
-		
 		Map<String, Object> goodsMap = new HashMap<>();
 		goodsMap.put("sort", goodsDto.getSort());
 		goodsMap.put("goodsCd", goodsCd);
 		mv.addObject("relatedGoodsList", goodsService.getRelatedGoodsList(goodsMap));
+		
+		mv.addObject("reviewList", reviewService.getReviewList(goodsCd));
+		mv.addObject("reviewCnt", reviewService.getReviewCnt(goodsCd));
 		return mv;
 	}
 	

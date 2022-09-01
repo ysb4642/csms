@@ -44,6 +44,19 @@
 		}
 	}
 	
+	function addReview() {
+		var content = $("[name='content']").val();
+		if (content == "") {
+			alert("리뷰를 입력하세요");
+			$("[name='content']").focus();
+			return false;
+		}
+		location.href = "${contextPath }/review/addReview?rating=" + $("[name='rating']").val() + "&content="+content +"&goodsCd=" + ${goodsDto.goodsCd};
+		
+	}
+	
+	
+	
 
 </script>
 </head>
@@ -151,12 +164,16 @@
 								</div>
 						<div class="col-sm-10 col-md-8 col-lg-6 m-t-20">
 							<ul>
-                                <li>
-                                    <span class="stext-102 cl3 size-205">맛 : ${goodsDto.taste }</span>
-                                </li>
-                                <li>
-                                    <span class="stext-102 cl3 size-205">중량 : ${goodsDto.capacity }</span>
-                                </li>
+								<c:if test="${goodsDto.taste ne null}">
+	                                <li>
+	                                    <span class="stext-102 cl3 size-205">맛 : ${goodsDto.taste }</span>
+	                                </li>
+								</c:if>
+								<c:if test="${goodsDto.capacity ne null}">
+	                                <li>
+	                                    <span class="stext-102 cl3 size-205">중량 : ${goodsDto.capacity }</span>
+	                                </li>
+                                </c:if>
                                 <li>
                                     <span class="stext-102 cl3 size-205">할인율 : ${goodsDto.discountRate }%</span>
                                 </li>
@@ -207,7 +224,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (${reviewCnt })</a>
 						</li>
 					</ul>
 
@@ -236,16 +253,17 @@
 												${goodsDto.brand }
 											</span>
 										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												유통기한
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												${goodsDto.expiryDate } 이후
-											</span>
-										</li>
+										<c:if test="${goodsDto.expiryDate ne null}">
+											<li class="flex-w flex-t p-b-7">
+												<span class="stext-102 cl3 size-205">
+													유통기한
+												</span>
+	
+												<span class="stext-102 cl6 size-206">
+													${goodsDto.expiryDate } 이후
+												</span>
+											</li>
+										</c:if>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
@@ -278,77 +296,71 @@
 									<div class="p-b-30 m-lr-15-sm">
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="${contextPath }/resources/bootstrap/images/avatar-01.jpg" alt="AVATAR">
-											</div>
-
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande
-													</span>
-
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
+											<c:forEach var="reviewDto" items="${reviewList }">
+												<div class="size-207">
+													<div class="flex-w flex-sb-m p-b-1">
+														<span class="mtext-107 cl2 p-r-20">
+															${reviewDto.memberId }
+														</span>
+														
+														<span class="fs-18 cl11">
+															<c:forEach var="i" begin="1" end="${reviewDto.rating }">
+																<i class="zmdi zmdi-star"></i>
+															</c:forEach>
+														</span>
+													</div>
+													<p class="stext-102 cl6">
+														${reviewDto.content }
+													</p>
 												</div>
-
-												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-												</p>
-											</div>
+											</c:forEach>
 										</div>
 										
 										<!-- Add review -->
-										<form class="w-full">
 											<h5 class="mtext-108 cl2 p-b-7">
 												Add a review
 											</h5>
-
-											<p class="stext-102 cl6">
-												Your email address will not be published. Required fields are marked *
-											</p>
-
-											<div class="flex-w flex-m p-t-50 p-b-23">
-												<span class="stext-102 cl3 m-r-16">
-													Your Rating
-												</span>
-
-												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<input class="dis-none" type="number" name="rating">
-												</span>
-											</div>
-
-											<div class="row p-b-25">
-												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">Your review</label>
-													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">Email</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
-												</div>
-											</div>
-
-											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-												Submit
-											</button>
-										</form>
+											
+											<c:choose>
+												<c:when test="${sessionId eq null}">
+														<h4>로그인을 먼저 해주세요.</h4>
+													<a href="${contextPath}/member/login" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+														Login
+													</a>
+												</c:when>
+												<c:otherwise>
+														<div class="flex-w flex-m p-t-50 p-b-23">
+															<span class="stext-102 cl3 m-r-16">
+																Your Rating
+															</span>
+			
+															<span class="wrap-rating fs-18 cl11 pointer">
+																<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+																<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+																<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+																<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+																<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+																<input class="dis-none" type="number" name="rating">
+															</span>
+														</div>
+														
+														<div class="row p-b-25">
+															<div class="col-12 p-b-5">
+																<label class="stext-102 cl3" for="review">Your review</label>
+																<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="content" name="content"></textarea>
+															</div>
+			
+															<div class="col-sm-6 p-b-5">
+																<label class="stext-102 cl3" for="email">Your Id</label>
+																<input class="size-111 bor8 stext-102 cl2 p-lr-20" type="text" id="memberId" name="memberId"  value="${sessionId }" disabled>
+															</div>
+														</div>
+														
+														<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="javascript:addReview()">
+															리뷰등록
+														</button>
+												</c:otherwise>
+											</c:choose>
 									</div>
 								</div>
 							</div>
@@ -379,16 +391,15 @@
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0">
-									<img src="${contextPath }/thumbnails?goodsFileName=${relatedGoods.goodsFileName}" width="270px" height="340px" alt="IMG-PRODUCT">
-	
-									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Quick View
+									<a href="${contextPath }/goods/goodsDetail?goodsCd=${relatedGoods.goodsCd}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<img src="${contextPath }/thumbnails?goodsFileName=${relatedGoods.goodsFileName}" width="270px" height="340px" alt="IMG-PRODUCT">
 									</a>
+	
 								</div>
 	
 								<div class="block2-txt flex-w flex-t p-t-14">
 									<div class="block2-txt-child1 flex-col-l ">
-										<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<a href="${contextPath }/goods/goodsDetail?goodsCd=${relatedGoods.goodsCd}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 											${relatedGoods.goodsNm }
 										</a>
 	

@@ -35,9 +35,10 @@
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<%-- <a href="#" >
+						<span style="color:white" font-size="10pt">bonny cat</span>
 						<img src="${contextPath }/resources/bootstrap/images/icons/logo-02.png" alt="IMG-LOGO">
-					</a>
+					</a> --%>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">

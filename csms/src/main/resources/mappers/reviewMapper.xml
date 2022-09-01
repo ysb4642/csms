@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="review">
+
+	<insert id="insertReview" parameterType="ReviewDto">
+		
+		INSERT INTO
+				REVIEW (
+					GOODS_CD,
+					MEMBER_ID,
+					RATING,
+					CONTENT,
+					ENROLL_DT
+				)
+		VALUES (
+				#{goodsCd},
+				#{memberId},
+				#{rating},
+				#{content},
+				NOW()
+		)
+				
+	</insert>
+	
+	<select id="selectReviewList" parameterType="int" resultType="reviewDto">
+		
+		SELECT
+				*
+		FROM
+				REVIEW
+		WHERE
+				GOODS_CD = #{goodsCd}		
+	
+	</select>
+	
+	<select id="selectReviewCnt" parameterType="int" resultType="int">
+	
+		SELECT
+				COUNT(*)
+		FROM
+				REVIEW
+		WHERE
+				GOODS_CD = #{goodsCd}
+	
+	</select>
+	
+	
+
+</mapper>

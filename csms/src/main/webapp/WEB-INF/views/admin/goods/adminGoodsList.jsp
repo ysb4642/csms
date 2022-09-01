@@ -36,10 +36,19 @@
 			</span>
 		</div>
 	</div>
-		
+	
 	<div class="container">
+			<div class="flex-sb-m p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+				<button class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" onclick="location.href='${contextPath}/admin/goods/goodsExcelExport'">
+					EXCEL
+				</button>
+				<button class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" onclick="location.href='${contextPath}/admin/goods/adminGoodsAdd'">
+					등록
+				</button>
+			</div>	
 		<div class="row">
-			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+			<!-- <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50"> -->
+			<div class="col-lg-12 m-lr-auto m-b-50 m-t-10">
 				<div class="m-l-25 m-r--38 m-lr-0-xl">
 					<div class="wrap-table-shopping-cart">
 						<table class="table-shopping-cart">
@@ -90,14 +99,14 @@
 							</c:choose>
 						</table>
 					</div>
-					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+					<%-- <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<button class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" onclick="location.href='${contextPath}/admin/goods/goodsExcelExport'">
 								EXCEL
 							</button>
 							<button class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" onclick="location.href='${contextPath}/admin/goods/adminGoodsAdd'">
 								등록
 							</button>
-					</div>
+					</div> --%>
 				</div>
 			</div>
 		</div>
