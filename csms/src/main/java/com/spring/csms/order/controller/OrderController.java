@@ -1,6 +1,10 @@
 package com.spring.csms.order.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.csms.goods.dto.GoodsDto;
 import com.spring.csms.myPage.service.MyPageService;
 import com.spring.csms.order.dto.OrderDto;
 import com.spring.csms.order.service.OrderService;
@@ -25,6 +30,9 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private MyPageService myPageService;
 	
 	@RequestMapping(value = "/orderCartGoods", method = RequestMethod.GET)
 	public ModelAndView orderCartGoods(@RequestParam("goodsCdList") String goodsCds,
@@ -41,12 +49,28 @@ public class OrderController {
 		ModelAndView mv = new ModelAndView("/order/orderCartGoods");
 		
 		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
 		
-		mv.addObject("orderer", orderService.getOrdererDetail((String)session.getAttribute("memberId")));
+//		List<GoodsDto> tmpGoodsList = orderService.getGoodsListByCart(goodsCdList); // 모든 memberId에서 장바구니에 겹치는 GoodsCd를 가져왔으므로 중복 제거
+//		List<GoodsDto> goodsList = new ArrayList<GoodsDto>();
+//		int[] distinct = new int[200];
+//		
+//		for (int i = 0; i < tmpGoodsList.size(); i++) {
+//			int tmp = tmpGoodsList.get(i).getGoodsCd();
+//			if (distinct[tmp] == 1) {
+//				continue;
+//			}
+//			goodsList.add(tmpGoodsList.get(i));
+//			distinct[tmp] = 1;
+//		}
+		
+		mv.addObject("orderer", orderService.getOrdererDetail(memberId));
 		mv.addObject("goodsList", orderService.getGoodsListByCart(goodsCdList));
 		mv.addObject("orderGoodsQtyList", cartGoodsQtyList);
 		mv.addObject("goodsCdList", goodsCds);
 		mv.addObject("cartCdList", cartCdList);
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		
 		return mv;
 		
@@ -74,9 +98,13 @@ public class OrderController {
 		
 		HttpSession session = request.getSession();
 		
-		mv.addObject("orderer", orderService.getOrdererDetail((String)session.getAttribute("memberId")));
+		String memberId = (String)session.getAttribute("memberId");
+		
+		mv.addObject("orderer", orderService.getOrdererDetail(memberId));
 		mv.addObject("goodsDto", orderService.getGoodsDetail(goodsCd));
 		mv.addObject("orderGoodsQty", orderGoodsQty);
+		mv.addObject("myCartList", myPageService.getMyCartList(memberId));
+		mv.addObject("countCartList", myPageService.countCartList(memberId));
 		
 		return mv;
 	}

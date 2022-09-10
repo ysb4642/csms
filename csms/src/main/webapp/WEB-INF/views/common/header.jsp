@@ -14,10 +14,10 @@
 		
 		for (var i = 0; i < countCartList; i++) {
 			
-			var price = Number($("#price"+i).val());
+			var headerPrice = Number($("#headerPrice"+i).val());
 			var cartGoodsQty = Number($("#cartGoodsQty"+i).val());
 			
-			total += price * cartGoodsQty;
+			total += headerPrice * cartGoodsQty;
 			
 		}
 		$("#total").html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " 원");
@@ -184,7 +184,7 @@
 									${myCart.cartGoodsQty } x
 									<span style="text-decoration: line-through; color: gray" ><fmt:formatNumber value="${myCart.price }"/></span>
 				                    <fmt:formatNumber value="${myCart.price -  myCart.price * (myCart.discountRate / 100)}"/>원
-				                    <input type="hidden" id="price${i.index }" value="${myCart.price -  myCart.price * (myCart.discountRate / 100)}">
+				                    <input type="hidden" id="headerPrice${i.index }" value="${myCart.price -  myCart.price * (myCart.discountRate / 100)}">
 				                    <input type="hidden" id="discountRate${i.index }" value="${myCart.discountRate}" />
 				                    <input type="hidden" id="cartGoodsQty${i.index }" value="${myCart.cartGoodsQty}" />
 								</span>

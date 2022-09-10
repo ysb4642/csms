@@ -219,7 +219,7 @@
 		for (var i = 0; i < orderGoodsQtyList.length - 1; i++) {
 			
 			$("#qty"+i).text(orderGoodsQtyList[i] + "개");
-			$("#orderGoodsQty"+i).val(orderGoodsQtyList[i] );
+			$("#orderGoodsQty"+i).val(orderGoodsQtyList[i]);
 			
 			var price = Number($("#price"+i).val());
 			var discountRate = Number($("#discountRate"+i).val());
@@ -230,11 +230,11 @@
 			
 			paymentAmtList += (price - parseInt(price * (discountRate / 100))) * orderGoodsQty;
 			paymentAmtList += ",";
-		
+			
 			totalDeliveryPrice += deliveryPrice;
 			totalPoint += Number($("#point"+i).val() * Number($("#orderGoodsQty"+i).val()));
-			
 		}
+		
 		if (totalDeliveryPrice > 2500) {
 			totalDeliveryPrice = 2500
 		}
@@ -248,7 +248,6 @@
 		$("#viewPaymentAmt").html(viewPaymentAmt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " 원");
 		$("[name='paymentAmtList']").val(paymentAmtList);
 		$("[name='totalPoint']").val(totalPoint);
-		
 		
 	});
 	
@@ -334,24 +333,24 @@
                             </thead>
                             <tbody>
                             	<c:set var="point" value="0"/>
-                            	<c:forEach var="goodsDto" items="${goodsList }" varStatus="i">
-                            		<c:set var="point" value="${point + goodsDto.point }"/>
+                            	<c:forEach var="myCart" items="${myCartList }" varStatus="i">
+                            		<c:set var="point" value="${point + myCart.point }"/>
                             		 <tr>
                             		 	<td align="center">${i.index + 1 } &nbsp;</td>
                                   			<td>
 	                                        <div class="row">
-	                                        	<img src="${contextPath }/thumbnails?goodsFileName=${goodsDto.goodsFileName }" width="100" height="100">
+	                                        	<img src="${contextPath }/thumbnails?goodsFileName=${myCart.goodsFileName }" width="100" height="100">
 	                                            <h6>
 	                                            	<br><br>&emsp;&emsp;&emsp;
-	                                            	<a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDto.goodsCd}">${goodsDto.goodsNm }</a>
-		                                          	<p>&emsp;&emsp;&emsp; ${goodsDto.brand } / <fmt:formatNumber value="${goodsDto.point }"/>p 적립</p>
+	                                            	<a href="${contextPath }/goods/goodsDetail?goodsCd=${myCart.goodsCd}">${myCart.goodsNm }</a>
+		                                          	<p>&emsp;&emsp;&emsp; ${myCart.brand } / <fmt:formatNumber value="${myCart.point }"/>p 적립</p>
 	                                            </h6>
 	                                        </div>
 	                                    </td>
 	                                    <td>
 	                                    	<div>
-	                                    		<span style="text-decoration: line-through; color: gray" ><fmt:formatNumber value="${goodsDto.price }"/></span><br>
-		                                    	<fmt:formatNumber value="${goodsDto.price -  goodsDto.price * (goodsDto.discountRate / 100)}"/>
+	                                    		<span style="text-decoration: line-through; color: gray" ><fmt:formatNumber value="${myCart.price }"/></span><br>
+		                                    	<fmt:formatNumber value="${myCart.price -  myCart.price * (myCart.discountRate / 100)}"/>
 	                                    	</div>
 	                                    </td>
 	                                    <td align="center">
@@ -360,11 +359,11 @@
 											</div>
 	                                    </td>
 	                                </tr>
-	                                	<input type="hidden" id="price${i.index }" value="${goodsDto.price}" />
-                                    	<input type="hidden" id="discountRate${i.index }" value="${goodsDto.discountRate}" />
+	                                	<input type="hidden" id="price${i.index }" value="${myCart.price}" />
+                                    	<input type="hidden" id="discountRate${i.index }" value="${myCart.discountRate}" />
                                       	<input type="hidden" id="orderGoodsQty${i.index }"/>
-                                      	<input type="hidden" id="deliveryPrice${i.index }" value="${goodsDto.deliveryPrice}" />
-                                      	<input type="hidden" id="point${i.index }" value="${goodsDto.point}" />
+                                      	<input type="hidden" id="deliveryPrice${i.index }" value="${myCart.deliveryPrice}" />
+                                      	<input type="hidden" id="point${i.index }" value="${myCart.point}" />
                             	</c:forEach>
                             </tbody>
                         </table>

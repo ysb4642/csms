@@ -14,8 +14,7 @@
 	<!-- DailyFile Appenders -->	
 	<appender name="dailyFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="/Users/ysb/csms.log" />		<!--  C:\\csms_logs\\csms.log -->
-																	<!-- //Users//ysb//csms.log --> 
-																	<!-- /Users/ysb/csms.log ??-->
+																	<!-- /Users/ysb/csms.log -->
 																<!-- /var/lib/tomcat9/csms.log -->
 		<layout class="org.apache.log4j.PatternLayout">
 		  <param name="DatePattern"   value="'.'yyyy-MM-dd"/>

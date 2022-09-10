@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="selectListCartGoods" resultType="GoodsDto">
-		SELECT
+		SELECT DISTINCT
 				*
 		FROM
 				GOODS G
