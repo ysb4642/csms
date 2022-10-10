@@ -13,16 +13,17 @@
 	</select>
 	
 	<select id="selectListCartGoods" resultType="GoodsDto">
-		SELECT DISTINCT
+		SELECT 
 				*
 		FROM
 				GOODS G
 			JOIN CART C
 				   ON G.GOODS_CD = C.GOODS_CD
 				  AND G.GOODS_CD IN
-				  		<foreach collection="array" item="goodsCd" separator="," open="(" close=")">
+				  		<foreach collection="goodsCdList" item="goodsCd" separator="," open="(" close=")">
 				  			#{goodsCd}
 				  		</foreach>
+				 AND C.MEMBER_ID = #{memberId}
 		ORDER BY
 				C.ENROLL_DT DESC
 	</select>

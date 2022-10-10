@@ -143,7 +143,7 @@
 		</h2>
 	</section>
 	
-	<c:if test="${sessionScope.memberId eq null}">
+	<c:if test="${sessionScope.role eq null}">
 		<script>
 			alert("로그인을 먼저 진행해주세요.");
 			location.href = "${contextPath}/member/login";

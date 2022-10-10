@@ -185,7 +185,7 @@
 									<span style="text-decoration: line-through; color: gray" ><fmt:formatNumber value="${myCart.price }"/></span>
 				                    <fmt:formatNumber value="${myCart.price -  myCart.price * (myCart.discountRate / 100)}"/>원
 				                    <input type="hidden" id="headerPrice${i.index }" value="${myCart.price -  myCart.price * (myCart.discountRate / 100)}">
-				                    <input type="hidden" id="discountRate${i.index }" value="${myCart.discountRate}" />
+				                    <input type="hidden" id="headerDiscountRate${i.index }" value="${myCart.discountRate}" />
 				                    <input type="hidden" id="cartGoodsQty${i.index }" value="${myCart.cartGoodsQty}" />
 								</span>
 							</div>

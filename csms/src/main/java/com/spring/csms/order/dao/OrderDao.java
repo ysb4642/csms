@@ -10,7 +10,7 @@ import com.spring.csms.order.dto.OrderDto;
 public interface OrderDao {
 
 	public MemberDto selectOneOrderer(String memberId) throws Exception;
-	public List<GoodsDto> selectListCartGoods(int[] goodsCdList) throws Exception;
+	public List<GoodsDto> selectListCartGoods(Map<String, Object> orderCartMap) throws Exception;
 	public void updateGoodsStockCntByCart(List<Map<String,Integer>> goodsMapList) throws Exception;
 	public void insertOrderByCart(List<OrderDto> orderList) throws Exception;
 	public void deleteCartByOrder(int[] cartCdList) throws Exception;

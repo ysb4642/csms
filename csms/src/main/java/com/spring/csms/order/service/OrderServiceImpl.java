@@ -26,8 +26,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<GoodsDto> getGoodsListByCart(int[] goodsCdList) throws Exception {
-		return orderDao.selectListCartGoods(goodsCdList);
+	public List<GoodsDto> getGoodsListByCart(Map<String, Object> orderCartMap) throws Exception {
+		return orderDao.selectListCartGoods(orderCartMap);
 	}
 
 	@Override

@@ -23,8 +23,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<GoodsDto> selectListCartGoods(int[] goodsCdList) throws Exception {
-		return sqlSession.selectList("order.selectListCartGoods", goodsCdList);
+	public List<GoodsDto> selectListCartGoods(Map<String, Object> orderCartMap) throws Exception {
+		return sqlSession.selectList("order.selectListCartGoods", orderCartMap);
 	}
 
 	@Override

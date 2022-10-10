@@ -1,6 +1,7 @@
 package com.spring.csms.order.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,12 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		String memberId = (String)session.getAttribute("memberId");
 		
-//		List<GoodsDto> tmpGoodsList = orderService.getGoodsListByCart(goodsCdList); // 모든 memberId에서 장바구니에 겹치는 GoodsCd를 가져왔으므로 중복 제거
+		Map<String, Object> orderCartMap = new HashMap<String, Object>();
+		orderCartMap.put("goodsCdList", goodsCdList);
+		orderCartMap.put("memberId", memberId);
+		
+		List<GoodsDto> goodsList = orderService.getGoodsListByCart(orderCartMap); // 모든 memberId에서 장바구니에 겹치는 GoodsCd를 가져왔으므로 중복 제거
+		
 //		List<GoodsDto> goodsList = new ArrayList<GoodsDto>();
 //		int[] distinct = new int[200];
 //		
@@ -65,7 +71,7 @@ public class OrderController {
 //		}
 		
 		mv.addObject("orderer", orderService.getOrdererDetail(memberId));
-		mv.addObject("goodsList", orderService.getGoodsListByCart(goodsCdList));
+		mv.addObject("goodsList", goodsList);
 		mv.addObject("orderGoodsQtyList", cartGoodsQtyList);
 		mv.addObject("goodsCdList", goodsCds);
 		mv.addObject("cartCdList", cartCdList);
