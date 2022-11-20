@@ -36,6 +36,4 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 		sqlSession.update("admin.goods.updateGoods", goodsDto);
 		
 	}
-	
-	
 }

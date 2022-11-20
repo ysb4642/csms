@@ -30,5 +30,4 @@ public class AdminDto {
 		this.joinDt = joinDt;
 	}
 	
-	
 }

@@ -13,12 +13,12 @@
 	var checkOrdererHp 	   = true;
 	var checkReceiverNm    = true;
 	var checkReceiverHp    = true;
-	var checkPayMethod	   = false;
 	var checkPayHp		   = true;	
 	var checkPostalCode    = true;
 	var checkRoadAddress   = true;
 	var checkParcelAddress = true;
 	var checkRestAddress   = true;
+	var checkPayMethod	   = false;
 	
 	$().ready(function name() {
 

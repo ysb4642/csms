@@ -27,7 +27,6 @@
 		<div class="row">
 			<div class="col-lg-12 m-lr-auto m-b-50 m-t-20">
 				<div class="m-l-25 m-r--38 m-lr-0-xl">
-					<h6 class="row m-l-1 m-b-10"><input type="checkbox" id="changeAllChoice" onchange="selectAllCart()"> &nbsp;전체선택</h6>
 					<div class="wrap-table-shopping-cart">
 						<table class="table-shopping-cart">
                             <thead>
@@ -80,6 +79,5 @@
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

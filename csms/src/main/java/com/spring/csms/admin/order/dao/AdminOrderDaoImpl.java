@@ -18,5 +18,4 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		return sqlSession.selectList("admin.order.selectListOrder");
 	}
 	
-	
 }

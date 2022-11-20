@@ -150,8 +150,8 @@ function formValidationCheck() {
 		}
 		
 		// 입력 내용 받기 = CKEDITOR.instances.textarea태그의id.getData();
-		if(CKEDITOR.instances.explain.getData() =='' || CKEDITOR.instances.explain.getData().length == 0){
-			 alert("상품설명을 입력하세요.");
+		if(CKEDITOR.instances.explain.getData() == '' || CKEDITOR.instances.explain.getData().length == 0){
+			alert("상품설명을 입력하세요.");
 		    $("#explain").focus();
 		    return false;
 		}
@@ -282,12 +282,5 @@ function formValidationCheck() {
 			</form>
 		</div>
 	</section>
-	
-	
-	
-	<!-- Map -->
-	<div class="map">
-		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="${contextPath }/resources/bootstrap/images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-	</div>
 </body>
 </html>

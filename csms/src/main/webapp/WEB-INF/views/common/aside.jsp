@@ -52,76 +52,19 @@
 					</li>
 
 				</ul>
-
 				<div class="sidebar-gallery w-full p-tb-30">
 					<span class="mtext-101 cl5">
 						@ bonny cat
 					</span>
-
-					<div class="flex-w flex-sb p-t-36 gallery-lb">
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-01.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-01.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-02.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-02.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-03.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-03.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-04.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-04.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-05.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-05.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-06.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-06.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-07.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-07.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-08.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-08.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="${contextPath }/resources/bootstrap/images/gallery-09.jpg" data-lightbox="gallery" 
-							style="background-image: url('${contextPath }/resources/bootstrap/images/gallery-09.jpg');"></a>
-						</div>
-					</div>
 				</div>
-
 				<div class="sidebar-gallery w-full">
 					<span class="mtext-101 cl5">
 						About Us
 					</span>
-
 					<p class="stext-108 cl6 p-t-27">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis. 
+						'bonny cat'은 반려동물 용품 업계의 전문가들이 모여 탄생한 오직 고양이와 집사님들만을 위한 고양이용품 전문 쇼핑몰입니다.
+						‘bonny cat’은 업계 시장의 성장과 함께한 전문가들인 만큼 집사님들과 고양이들에게 필요한 것과 또 부족한것이 무엇인지 잘 알고 있다고 자부합니다.
+						앞으로도 계속해서 좋은 물건과 좋은 가격으로 고객 여러분들께 보답하도록 노력하겠습니다. 
 					</p>
 				</div>
 			</div>

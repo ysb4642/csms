@@ -44,7 +44,4 @@ public class ContactDto {
 		this.regDt = regDt;
 	}
 	
-	
-	
-	
 }

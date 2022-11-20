@@ -32,22 +32,6 @@ import net.coobird.thumbnailator.Thumbnails;
 @Controller
 public class CommonController {
 	
-//	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
-//	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-//		
-//		return "home";
-//	}
-	
 	@Autowired
 	private GoodsService goodsService;
 	
@@ -119,7 +103,7 @@ public class CommonController {
 		commonService.addNewContact(contactDto);
 		
 		String jsScript  = "<script>";
-			   jsScript += "alert('contact가 등록 되었습니다.');";
+			   jsScript += "alert('문의가 등록 되었습니다.');";
 			   jsScript += "location.href='" + request.getContextPath() + "/';";
 			   jsScript += "</script>";
 		
@@ -176,21 +160,3 @@ public class CommonController {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

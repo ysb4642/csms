@@ -22,7 +22,6 @@
 		
 	});
 	
-	
 	function getTotalPrice() {
 		var totalPrice = 0;
 		$("[name='cartCd']:checked").each(function(){
@@ -96,9 +95,6 @@
 			
 		location.href = url;
 	}
-	
-	
-	
 </script>
 </head>
 <body>

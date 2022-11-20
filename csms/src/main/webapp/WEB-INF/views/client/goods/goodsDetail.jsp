@@ -289,7 +289,6 @@
 							</div>
 						</div>
 
-						<!-- - -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
@@ -418,11 +417,9 @@
 							</div>
 						</div>
 					</c:forEach>
-
 				</div>
 			</div>
 		</div>
 	</section>
-	
 </body>
 </html>

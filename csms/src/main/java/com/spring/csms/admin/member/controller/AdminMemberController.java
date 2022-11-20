@@ -172,14 +172,3 @@ public class AdminMemberController {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

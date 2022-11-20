@@ -33,7 +33,6 @@ public class MemberController {
 	@RequestMapping(value="/login" , method = RequestMethod.POST)
 	public ResponseEntity<Object> login(MemberDto memberDto, HttpServletRequest request) throws Exception {
 		
-		
 		String jsScript = "";
 		if (memberService.login(memberDto)) {
 			HttpSession session = request.getSession();
@@ -53,7 +52,6 @@ public class MemberController {
 			jsScript += " history.go(-1);";
 			jsScript += " </script>";
 		}
-		
 		
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add("Content-Type", "text/html; charset=utf-8");
@@ -103,28 +101,3 @@ public class MemberController {
 		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK); 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

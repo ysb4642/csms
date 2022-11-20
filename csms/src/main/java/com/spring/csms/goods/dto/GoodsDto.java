@@ -112,13 +112,5 @@ public class GoodsDto {
 	public void setEnrollDt(Date enrollDt) {
 		this.enrollDt = enrollDt;
 	}
-	@Override
-	public String toString() {
-		return "GoodsDto [goodsCd=" + goodsCd + ", goodsNm=" + goodsNm + ", price=" + price + ", taste=" + taste
-				+ ", expiryDate=" + expiryDate + ", capacity=" + capacity + ", discountRate=" + discountRate
-				+ ", stock=" + stock + ", brand=" + brand + ", sort=" + sort + ", point=" + point + ", deliveryPrice="
-				+ deliveryPrice + ", explain=" + explain + ", goodsFileName=" + goodsFileName + ", enrollDt=" + enrollDt
-				+ "]";
-	}
 	
 }

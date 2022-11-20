@@ -71,5 +71,4 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sqlSession.selectOne("myPage.selectCountMyCart" , memberId);
 	}
 
-
 }

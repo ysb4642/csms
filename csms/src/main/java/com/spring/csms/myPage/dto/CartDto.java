@@ -44,5 +44,4 @@ public class CartDto {
 		this.enrollDt = enrollDt;
 	}
 	
-	
 }

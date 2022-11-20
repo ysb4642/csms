@@ -114,14 +114,4 @@ public class MemberDto {
 		this.joinDt = joinDt;
 	}
 	
-	@Override
-	public String toString() {
-		return "MemberDto [memberId=" + memberId + ", passwd=" + passwd + ", memberNm=" + memberNm + ", dateBirth="
-				+ dateBirth + ", gender=" + gender + ", hp=" + hp + ", smsstsYn=" + smsstsYn + ", email=" + email
-				+ ", emailstsYn=" + emailstsYn + ", postalCode=" + postalCode + ", roadAddress=" + roadAddress
-				+ ", parcelAddress=" + parcelAddress + ", restAddress=" + restAddress + ", point=" + point + ", joinDt="
-				+ joinDt + "]";
-	}
-	
 }
-

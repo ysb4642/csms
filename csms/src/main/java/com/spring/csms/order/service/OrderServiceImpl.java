@@ -104,8 +104,6 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 		orderDao.deleteCartByOrder(cartCdList);
-		
-		
 	}
 
 	@Override
@@ -129,26 +127,3 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

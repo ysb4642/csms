@@ -47,8 +47,4 @@ public class ReviewDto {
 		this.enrollDt = enrollDt;
 	}
 	
-	
 }
-	
-	
-	

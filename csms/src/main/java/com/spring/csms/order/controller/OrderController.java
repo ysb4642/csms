@@ -56,19 +56,7 @@ public class OrderController {
 		orderCartMap.put("goodsCdList", goodsCdList);
 		orderCartMap.put("memberId", memberId);
 		
-		List<GoodsDto> goodsList = orderService.getGoodsListByCart(orderCartMap); // 모든 memberId에서 장바구니에 겹치는 GoodsCd를 가져왔으므로 중복 제거
-		
-//		List<GoodsDto> goodsList = new ArrayList<GoodsDto>();
-//		int[] distinct = new int[200];
-//		
-//		for (int i = 0; i < tmpGoodsList.size(); i++) {
-//			int tmp = tmpGoodsList.get(i).getGoodsCd();
-//			if (distinct[tmp] == 1) {
-//				continue;
-//			}
-//			goodsList.add(tmpGoodsList.get(i));
-//			distinct[tmp] = 1;
-//		}
+		List<GoodsDto> goodsList = orderService.getGoodsListByCart(orderCartMap);
 		
 		mv.addObject("orderer", orderService.getOrdererDetail(memberId));
 		mv.addObject("goodsList", goodsList);
@@ -132,34 +120,4 @@ public class OrderController {
 		return new ResponseEntity<Object>(jsScript, httpHeaders, HttpStatus.OK);
 	}
 	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

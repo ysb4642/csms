@@ -40,7 +40,6 @@ function formValidationCheck() {
 		</h2>
 	</section>	
 
-
 	<!-- Content page -->
 	<section class="bg0 p-t-104 p-b-116">
 		<div class="container">
@@ -76,6 +75,5 @@ function formValidationCheck() {
 			</div>
 		</div>
 	</section>	
-
 </body>
 </html>
