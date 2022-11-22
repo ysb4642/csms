@@ -17,5 +17,5 @@ public interface MyPageService {
 	public List<Map<String, Object>> getMyOrderList(String memberId) throws Exception;
 	public Map<String,Object> getMyOrderDetail(Map<String, Object> orderDetailMap) throws Exception;
 	public List<Map<String, Object>> getMyCartList(String memberId) throws Exception;
-	public int countCartList(String memberId) throws Exception;
+	public Integer countCartList(String memberId) throws Exception;
 }

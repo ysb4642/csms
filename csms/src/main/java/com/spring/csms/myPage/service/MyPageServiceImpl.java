@@ -76,7 +76,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int countCartList(String memberId) throws Exception {
+	public Integer countCartList(String memberId) throws Exception {
 		return myPageDao.selectCountMyCart(memberId);
 	}
 

@@ -67,7 +67,7 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 
 	@Override
-	public int selectCountMyCart(String memberId) throws Exception {
+	public Integer selectCountMyCart(String memberId) throws Exception {
 		return sqlSession.selectOne("myPage.selectCountMyCart" , memberId);
 	}
 
