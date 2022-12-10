@@ -15,10 +15,6 @@
 		$("[name='cartCd']").change(function(){
 			getTotalPrice();
 		});
-		name="cartGoodsQty${myCart.cartCd }"
-		$("[name='cartGoodsQty' + ${myCart.cartCd }]").change(function(){
-			getTotalPrice();
-		});
 		
 	});
 	
@@ -192,7 +188,7 @@
 									</ul>
 								</div>
 								<div>
-									<button class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" onclick="javascript:processOrderCart()">
+									<button class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" onclick="javascript:processOrderCart();">
 									주문하기
 									</button>
 								</div>							
