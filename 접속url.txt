@@ -1,0 +1,10 @@
+
+
+        - 접속 url : www.bonnycat.com
+	- 테스트 ID : testid1
+	  비밀번호 : 1q2w3e4r!
+
+	- 관리자 로그인 : www.bonnycat.com/admin/member/adminLogin
+        - 관리자 ID : csmsadmin
+	  비밀번호 : P@ssw0rd
+	

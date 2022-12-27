@@ -20,7 +20,7 @@
 	var checkRestAddress   = true;
 	var checkPayMethod	   = false;
 	
-	$().ready(function name() {
+	$().ready(function () {
 
 		$("#ordererNm").blur(function() {
 			
